@@ -330,6 +330,237 @@ nav .container {
   margin-bottom: 5px;
 }
 
+/* Certifications with Horizontal Scrolling */
+.certifications {
+  padding: 80px 0;
+  background-color: #f8f9fa;
+}
+
+.certification-filters {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 30px;
+  flex-wrap: wrap;
+}
+
+.cert-filter-btn {
+  background-color: transparent;
+  color: var(--text-dark);
+  border: 1px solid #ddd;
+  padding: 8px 15px;
+  margin: 0 5px 10px;
+  border-radius: 30px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: all 0.3s ease;
+}
+
+.cert-filter-btn:hover {
+  background-color: rgba(var(--primary-rgb), 0.1);
+}
+
+.cert-filter-btn.active {
+  background-color: var(--primary-color);
+  color: #fff;
+  border-color: var(--primary-color);
+}
+
+.certifications-carousel {
+  margin-top: 20px;
+}
+
+.row-container {
+  position: relative;
+}
+
+.cert-row {
+  margin-bottom: 40px;
+  position: relative;
+  display: block;
+}
+
+.cert-row-title {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 15px;
+  color: var(--text-dark);
+  position: relative;
+  display: inline-block;
+  padding-bottom: 5px;
+}
+
+.cert-row-title::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 50px;
+  height: 3px;
+  background-color: var(--primary-color);
+}
+
+[data-priority-row="high"] .cert-row-title {
+  color: #e74c3c;
+}
+
+[data-priority-row="high"] .cert-row-title::after {
+  background-color: #e74c3c;
+}
+
+[data-priority-row="medium"] .cert-row-title {
+  color: #f39c12;
+}
+
+[data-priority-row="medium"] .cert-row-title::after {
+  background-color: #f39c12;
+}
+
+[data-priority-row="low"] .cert-row-title {
+  color: #3498db;
+}
+
+[data-priority-row="low"] .cert-row-title::after {
+  background-color: #3498db;
+}
+
+.cert-row-scroll {
+  display: flex;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  padding: 10px 5px;
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+  position: relative;
+  gap: 20px;
+}
+
+.cert-row-scroll::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
+}
+
+.certification-card {
+  flex: 0 0 auto;
+  width: 300px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  position: relative;
+}
+
+.certification-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+}
+
+.certification-icon {
+  font-size: 28px;
+  color: var(--primary-color);
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+.certification-content h3 {
+  color: var(--text-dark);
+  font-size: 16px;
+  margin-bottom: 5px;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.certification-content h4 {
+  color: var(--primary-color);
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+
+.certification-date {
+  color: var(--text-light);
+  font-size: 13px;
+  margin-bottom: 10px;
+}
+
+.cert-link {
+  display: inline-block;
+  color: var(--primary-color);
+  font-size: 14px;
+  margin-top: 10px;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.cert-link:hover {
+  color: var(--primary-dark);
+}
+
+.scroll-indicator {
+  display: flex;
+  justify-content: space-between;
+  position: absolute;
+  width: 100%;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 5;
+  pointer-events: none;
+}
+
+.scroll-arrow {
+  width: 40px;
+  height: 40px;
+  background-color: rgba(255, 255, 255, 0.9);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--primary-color);
+  cursor: pointer;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+  pointer-events: auto;
+  transition: all 0.3s ease;
+  opacity: 0.7;
+}
+
+.scroll-arrow:hover {
+  background-color: var(--primary-color);
+  color: #fff;
+  opacity: 1;
+}
+
+.scroll-arrow.left {
+  left: -20px;
+}
+
+.scroll-arrow.right {
+  right: -20px;
+}
+
+/* Hide rows based on filter */
+.cert-row.hidden {
+  display: none;
+}
+
+/* For very small screens, make cards smaller */
+@media (max-width: 576px) {
+  .certification-card {
+      width: 260px;
+  }
+  
+  .scroll-arrow {
+      width: 30px;
+      height: 30px;
+      font-size: 12px;
+  }
+  
+  .scroll-arrow.left {
+      left: -15px;
+  }
+  
+  .scroll-arrow.right {
+      right: -15px;
+  }
+}
+
 /* Skills Section */
 .skills {
   background: linear-gradient(135deg, rgba(67, 97, 238, 0.1) 0%, rgba(76, 201, 240, 0.1) 100%);
