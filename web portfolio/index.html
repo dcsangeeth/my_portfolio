@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Engineer Portfolio</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="container">
+            <div class="logo" data-aos="fade-right">
+                <span>Engineer</span>Portfolio
+            </div>
+            <div class="menu-btn">
+                <i class="fas fa-bars"></i>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#home" class="active">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text" data-aos="fade-up" data-aos-delay="200">
+                    <h1>John Doe</h1>
+                    <h2>Software Engineer</h2>
+                    <p>Undergraduate Engineer specializing in full-stack development and machine learning</p>
+                    <div class="cta-buttons">
+                        <a href="#contact" class="btn primary-btn">Hire Me</a>
+                        <a href="#projects" class="btn secondary-btn">See My Work</a>
+                    </div>
+                </div>
+                <div class="hero-image" data-aos="fade-left" data-aos-delay="400">
+                    <img src="mainImage.jpg" alt="Profile Image">
+                    <div class="shape"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <h2 class="section-title" data-aos="fade-up">About Me</h2>
+            <div class="about-content">
+                <div class="about-image" data-aos="fade-right" data-aos-delay="200">
+                    <img src="mainImage.jpg" alt="About Me">
+                    <div class="shape"></div>
+                </div>
+                <div class="about-text" data-aos="fade-left" data-aos-delay="400">
+                    <h3>Hello, I'm John Doe</h3>
+                    <p>I'm a passionate undergraduate software engineer with a focus on creating innovative solutions to real-world problems. I'm currently pursuing my Bachelor's degree in Computer Engineering at University of Technology.</p>
+                    <p>I have a strong foundation in both software and hardware aspects of engineering, with particular interest in web development, IoT, and artificial intelligence.</p>
+                    <div class="about-details">
+                        <div class="detail">
+                            <i class="fas fa-graduation-cap"></i>
+                            <div>
+                                <h4>Education</h4>
+                                <p>B.S. in Computer Engineering</p>
+                            </div>
+                        </div>
+                        <div class="detail">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <div>
+                                <h4>Location</h4>
+                                <p>San Francisco, CA</p>
+                            </div>
+                        </div>
+                        <div class="detail">
+                            <i class="fas fa-language"></i>
+                            <div>
+                                <h4>Languages</h4>
+                                <p>English, Spanish</p>
+                            </div>
+                        </div>
+                        <div class="detail">
+                            <i class="fas fa-laptop-code"></i>
+                            <div>
+                                <h4>Interests</h4>
+                                <p>Web Dev, IoT, Machine Learning</p>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="#" class="btn primary-btn">Download CV</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="skills">
+        <div class="container">
+            <h2 class="section-title" data-aos="fade-up">My Skills</h2>
+            <div class="skills-content">
+                <div class="skill-category" data-aos="fade-up" data-aos-delay="200">
+                    <h3>Technical Skills</h3>
+                    <div class="skill-bars">
+                        <div class="skill-bar">
+                            <div class="skill-info">
+                                <span>JavaScript</span>
+                                <span>85%</span>
+                            </div>
+                            <div class="progress-line"><span class="js"></span></div>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-info">
+                                <span>Python</span>
+                                <span>80%</span>
+                            </div>
+                            <div class="progress-line"><span class="python"></span></div>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-info">
+                                <span>React</span>
+                                <span>75%</span>
+                            </div>
+                            <div class="progress-line"><span class="react"></span></div>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-info">
+                                <span>Node.js</span>
+                                <span>70%</span>
+                            </div>
+                            <div class="progress-line"><span class="nodejs"></span></div>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-info">
+                                <span>C++</span>
+                                <span>65%</span>
+                            </div>
+                            <div class="progress-line"><span class="cpp"></span></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="soft-skills" data-aos="fade-up" data-aos-delay="400">
+                    <h3>Soft Skills</h3>
+                    <div class="soft-skills-grid">
+                        <div class="soft-skill">
+                            <div class="soft-skill-icon">
+                                <i class="fas fa-users"></i>
+                            </div>
+                            <h4>Teamwork</h4>
+                        </div>
+                        <div class="soft-skill">
+                            <div class="soft-skill-icon">
+                                <i class="fas fa-lightbulb"></i>
+                            </div>
+                            <h4>Problem Solving</h4>
+                        </div>
+                        <div class="soft-skill">
+                            <div class="soft-skill-icon">
+                                <i class="fas fa-comment-dots"></i>
+                            </div>
+                            <h4>Communication</h4>
+                        </div>
+                        <div class="soft-skill">
+                            <div class="soft-skill-icon">
+                                <i class="fas fa-chart-line"></i>
+                            </div>
+                            <h4>Adaptability</h4>
+                        </div>
+                        <div class="soft-skill">
+                            <div class="soft-skill-icon">
+                                <i class="fas fa-tasks"></i>
+                            </div>
+                            <h4>Time Management</h4>
+                        </div>
+                        <div class="soft-skill">
+                            <div class="soft-skill-icon">
+                                <i class="fas fa-project-diagram"></i>
+                            </div>
+                            <h4>Project Management</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section with Timeline -->
+    <section id="experience" class="experience">
+        <div class="container">
+            <h2 class="section-title" data-aos="fade-up">My Experience</h2>
+            <div class="timeline">
+                <div class="timeline-item" data-aos="fade-right" data-aos-delay="200">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-date">
+                        <span>2024 - Present</span>
+                    </div>
+                    <div class="timeline-content">
+                        <h3>Software Engineering Intern</h3>
+                        <h4>Tech Innovations Inc.</h4>
+                        <p>Working on full-stack development for a product management system. Implementing features using React, Node.js, and MongoDB. Participating in agile development cycles and team code reviews.</p>
+                        <div class="tech-stack">
+                            <span>React</span>
+                            <span>Node.js</span>
+                            <span>MongoDB</span>
+                            <span>Git</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="timeline-item" data-aos="fade-left" data-aos-delay="300">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-date">
+                        <span>2023 - 2024</span>
+                    </div>
+                    <div class="timeline-content">
+                        <h3>Research Assistant</h3>
+                        <h4>University AI Lab</h4>
+                        <p>Assisted in developing machine learning models for predictive analytics in healthcare. Implemented data processing pipelines and conducted experiments to improve model accuracy.</p>
+                        <div class="tech-stack">
+                            <span>Python</span>
+                            <span>TensorFlow</span>
+                            <span>Scikit-learn</span>
+                            <span>Pandas</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="timeline-item" data-aos="fade-right" data-aos-delay="400">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-date">
+                        <span>2022 - 2023</span>
+                    </div>
+                    <div class="timeline-content">
+                        <h3>Web Development Intern</h3>
+                        <h4>Creative Solutions Studio</h4>
+                        <p>Collaborated on front-end development for client websites. Created responsive designs and implemented animations to enhance user experience. Worked with a team of designers and developers.</p>
+                        <div class="tech-stack">
+                            <span>HTML/CSS</span>
+                            <span>JavaScript</span>
+                            <span>SASS</span>
+                            <span>Figma</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="timeline-item" data-aos="fade-left" data-aos-delay="500">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-date">
+                        <span>2021 - 2022</span>
+                    </div>
+                    <div class="timeline-content">
+                        <h3>Robotics Club Lead</h3>
+                        <h4>University Engineering Society</h4>
+                        <p>Led a team of 10 engineering students in designing and building autonomous robots for university competitions. Managed project timelines and coordinated interdisciplinary collaboration.</p>
+                        <div class="tech-stack">
+                            <span>Arduino</span>
+                            <span>C++</span>
+                            <span>ROS</span>
+                            <span>3D Printing</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="projects">
+        <div class="container">
+            <h2 class="section-title" data-aos="fade-up">My Projects</h2>
+            <div class="project-filters" data-aos="fade-up" data-aos-delay="200">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="web">Web</button>
+                <button class="filter-btn" data-filter="mobile">Mobile</button>
+                <button class="filter-btn" data-filter="iot">IoT</button>
+                <button class="filter-btn" data-filter="ai">AI/ML</button>
+            </div>
+            <div class="projects-grid">
+                <div class="project-card" data-category="web" data-aos="fade-up" data-aos-delay="300">
+                    <div class="project-img">
+                        <img src="/api/placeholder/400/300" alt="Project 1">
+                    </div>
+                    <div class="project-info">
+                        <h3>E-Commerce Platform</h3>
+                        <p>A fully responsive e-commerce website with product filtering, user authentication, and payment integration.</p>
+                        <div class="project-tech">
+                            <span>React</span>
+                            <span>Node.js</span>
+                            <span>MongoDB</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="#" class="btn small-btn"><i class="fas fa-eye"></i> Live</a>
+                            <a href="#" class="btn small-btn"><i class="fab fa-github"></i> Code</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-card" data-category="ai" data-aos="fade-up" data-aos-delay="400">
+                    <div class="project-img">
+                        <img src="/api/placeholder/400/300" alt="Project 2">
+                    </div>
+                    <div class="project-info">
+                        <h3>Medical Image Analysis</h3>
+                        <p>A deep learning model to detect abnormalities in X-ray images with high accuracy using convolutional neural networks.</p>
+                        <div class="project-tech">
+                            <span>Python</span>
+                            <span>TensorFlow</span>
+                            <span>OpenCV</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="#" class="btn small-btn"><i class="fas fa-eye"></i> Demo</a>
+                            <a href="#" class="btn small-btn"><i class="fab fa-github"></i> Code</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-card" data-category="iot" data-aos="fade-up" data-aos-delay="500">
+                    <div class="project-img">
+                        <img src="/api/placeholder/400/300" alt="Project 3">
+                    </div>
+                    <div class="project-info">
+                        <h3>Smart Home System</h3>
+                        <p>An IoT-based home automation system with temperature monitoring, light control, and security features.</p>
+                        <div class="project-tech">
+                            <span>Arduino</span>
+                            <span>ESP32</span>
+                            <span>MQTT</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="#" class="btn small-btn"><i class="fas fa-eye"></i> Demo</a>
+                            <a href="#" class="btn small-btn"><i class="fab fa-github"></i> Code</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="project-card" data-category="mobile" data-aos="fade-up" data-aos-delay="600">
+                    <div class="project-img">
+                        <img src="/api/placeholder/400/300" alt="Project 4">
+                    </div>
+                    <div class="project-info">
+                        <h3>Fitness Tracker App</h3>
+                        <p>A mobile app for tracking workouts, nutrition, and health metrics with personalized recommendations.</p>
+                        <div class="project-tech">
+                            <span>React Native</span>
+                            <span>Firebase</span>
+                            <span>Redux</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="#" class="btn small-btn"><i class="fas fa-eye"></i> Demo</a>
+                            <a href="#" class="btn small-btn"><i class="fab fa-github"></i> Code</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2 class="section-title" data-aos="fade-up">Get In Touch</h2>
+            <div class="contact-content">
+                <div class="contact-info" data-aos="fade-right" data-aos-delay="200">
+                    <h3>Contact Information</h3>
+                    <p>Feel free to reach out to me for collaboration or job opportunities. I'm currently available for internships and part-time positions.</p>
+                    <div class="contact-details">
+                        <div class="contact-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>San Francisco, California, USA</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <span>john.doe@example.com</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-phone"></i>
+                            <span>+1 (123) 456-7890</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-graduation-cap"></i>
+                            <span>University of Technology</span>
+                        </div>
+                    </div>
+                    <div class="social-links">
+                        <a href="#" class="social-link"><i class="fab fa-github"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="contact-form" data-aos="fade-left" data-aos-delay="400">
+                    <h3>Send Me a Message</h3>
+                    <form id="contactForm">
+                        <div class="input-group">
+                            <input type="text" id="name" name="name" required>
+                            <label for="name">Your Name</label>
+                        </div>
+                        <div class="input-group">
+                            <input type="email" id="email" name="email" required>
+                            <label for="email">Your Email</label>
+                        </div>
+                        <div class="input-group">
+                            <input type="text" id="subject" name="subject" required>
+                            <label for="subject">Subject</label>
+                        </div>
+                        <div class="input-group">
+                            <textarea id="message" name="message" rows="5" required></textarea>
+                            <label for="message">Your Message</label>
+                        </div>
+                        <button type="submit" class="btn primary-btn">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <span>Engineer</span>Portfolio
+                </div>
+                <p>© 2025 John Doe. All Rights Reserved.</p>
+                <div class="footer-links">
+                    <a href="#home">Home</a>
+                    <a href="#about">About</a>
+                    <a href="#skills">Skills</a>
+                    <a href="#experience">Experience</a>
+                    <a href="#projects">Projects</a>
+                    <a href="#contact">Contact</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
