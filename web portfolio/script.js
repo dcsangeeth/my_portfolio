@@ -98,6 +98,132 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
     });
+
+    const setupCertRowScrolling = () => {
+        const rows = document.querySelectorAll('.cert-row');
+        
+        rows.forEach(row => {
+            const scrollContainer = row.querySelector('.cert-row-scroll');
+            const leftArrow = row.querySelector('.scroll-arrow.left');
+            const rightArrow = row.querySelector('.scroll-arrow.right');
+            
+            // Hide left arrow initially
+            leftArrow.style.opacity = '0.3';
+            
+            // Check scroll position
+            const checkScrollPosition = () => {
+                const isAtStart = scrollContainer.scrollLeft <= 10;
+                const isAtEnd = scrollContainer.scrollLeft + scrollContainer.clientWidth >= scrollContainer.scrollWidth - 10;
+                
+                leftArrow.style.opacity = isAtStart ? '0.3' : '0.7';
+                rightArrow.style.opacity = isAtEnd ? '0.3' : '0.7';
+            };
+            
+            // Initial check
+            checkScrollPosition();
+            
+            // Scroll left
+            leftArrow.addEventListener('click', () => {
+                scrollContainer.scrollBy({ left: -320, behavior: 'smooth' });
+            });
+            
+            // Scroll right
+            rightArrow.addEventListener('click', () => {
+                scrollContainer.scrollBy({ left: 320, behavior: 'smooth' });
+            });
+            
+            // Update arrow states on scroll
+            scrollContainer.addEventListener('scroll', checkScrollPosition);
+        });
+    };
+    
+    // Initialize certification filters if they exist
+    const certFilterBtns = document.querySelectorAll('.cert-filter-btn');
+    if (certFilterBtns.length > 0) {
+        setupCertRowScrolling();
+        
+        certFilterBtns.forEach(btn => {
+            btn.addEventListener('click', function() {
+                // Remove active class from all buttons
+                certFilterBtns.forEach(b => b.classList.remove('active'));
+                // Add active class to clicked button
+                this.classList.add('active');
+                
+                // Get filter value
+                const filterValue = this.getAttribute('data-filter');
+                
+                // Show/hide rows based on filter
+                const rows = document.querySelectorAll('.cert-row');
+                
+                if (filterValue === 'all') {
+                    // Show all rows
+                    rows.forEach(row => {
+                        row.classList.remove('hidden');
+                    });
+                } else {
+                    // Show only the matching row and hide others
+                    rows.forEach(row => {
+                        if (row.getAttribute('data-priority-row') === filterValue) {
+                            row.classList.remove('hidden');
+                        } else {
+                            row.classList.add('hidden');
+                        }
+                    });
+                }
+            });
+        });
+    }
+    
+    // Drag to scroll functionality
+    const certRowScrolls = document.querySelectorAll('.cert-row-scroll');
+    certRowScrolls.forEach(scrollContainer => {
+        let isDragging = false;
+        let startX;
+        let scrollLeft;
+        
+        scrollContainer.addEventListener('mousedown', (e) => {
+            isDragging = true;
+            startX = e.pageX - scrollContainer.offsetLeft;
+            scrollLeft = scrollContainer.scrollLeft;
+            scrollContainer.style.cursor = 'grabbing';
+        });
+        
+        scrollContainer.addEventListener('mouseleave', () => {
+            isDragging = false;
+            scrollContainer.style.cursor = 'grab';
+        });
+        
+        scrollContainer.addEventListener('mouseup', () => {
+            isDragging = false;
+            scrollContainer.style.cursor = 'grab';
+        });
+        
+        scrollContainer.addEventListener('mousemove', (e) => {
+            if (!isDragging) return;
+            e.preventDefault();
+            const x = e.pageX - scrollContainer.offsetLeft;
+            const walk = (x - startX) * 2; // Scroll speed
+            scrollContainer.scrollLeft = scrollLeft - walk;
+        });
+        
+        // Touch events for mobile
+        scrollContainer.addEventListener('touchstart', (e) => {
+            isDragging = true;
+            startX = e.touches[0].pageX - scrollContainer.offsetLeft;
+            scrollLeft = scrollContainer.scrollLeft;
+        });
+        
+        scrollContainer.addEventListener('touchend', () => {
+            isDragging = false;
+        });
+        
+        scrollContainer.addEventListener('touchmove', (e) => {
+            if (!isDragging) return;
+            const x = e.touches[0].pageX - scrollContainer.offsetLeft;
+            const walk = (x - startX) * 2;
+            scrollContainer.scrollLeft = scrollLeft - walk;
+        });
+    });
     
     // Contact Form Animation
     const inputs = document.querySelectorAll('.input-group input, .input-group textarea');
