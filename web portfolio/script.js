@@ -242,7 +242,6 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // Form Submission
     const contactForm = document.getElementById('contactForm');
-    
     if (contactForm) {
         contactForm.addEventListener('submit', function(e) {
             e.preventDefault();
@@ -259,13 +258,26 @@ document.addEventListener('DOMContentLoaded', () => {
                 return;
             }
             
-            // In a real application, you would send this data to a server
-            // For this example, we'll just show a success message
-            alert(`Thank you for your message, ${name}! I'll get back to you soon.`);
+            // Format the message body with user details
+            const messageBody = `Name: ${name}%0D%0AEmail: ${email}%0D%0A%0D%0A${message}`;
+            
+            // Create mailto URL with all the parameters
+            const mailtoUrl = `mailto:eg20018@seu.ac.lk?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(messageBody)}`;
+            
+            // Open the mail client
+            window.location.href = mailtoUrl;
+            
+            // Show a message that email client should open
+            const formMessage = document.getElementById('formMessage');
+            if (formMessage) {
+                formMessage.textContent = "Opening your email client...";
+                formMessage.style.color = "green";
+            }
+            
+            // Optional: Reset the form after sending
             contactForm.reset();
         });
     }
-    
     // Add typing animation to hero text
     const heroTitle = document.querySelector('.hero-text h1');
     const heroSubtitle = document.querySelector('.hero-text h2');
