@@ -262,7 +262,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const messageBody = `Name: ${name}%0D%0AEmail: ${email}%0D%0A%0D%0A${message}`;
             
             // Create mailto URL with all the parameters
-            const mailtoUrl = `mailto:eg20018@seu.ac.lk?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(messageBody)}`;
+            const mailtoUrl = `mailto:dcsangeeth@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(messageBody)}`;
             
             // Open the mail client
             window.location.href = mailtoUrl;
