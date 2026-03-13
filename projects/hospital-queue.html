@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hospital Queue System – DC Sangeeth</title>
+    <link rel="icon" type="image/png" href="../images/profile.jpg">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="project-styles.css">
+</head>
+
+<body>
+    <nav class="project-nav">
+        <div class="nav-inner">
+            <a href="../index.html" class="back-btn"><i class="fas fa-arrow-left"></i> Back to Portfolio</a>
+            <div class="nav-logo"><span>DC</span>Sangeeth</div>
+            <button class="theme-toggle" id="themeToggle" title="Toggle theme"><i class="fas fa-moon"
+                    id="themeIcon"></i></button>
+        </div>
+    </nav>
+
+    <section class="project-hero" style="--hero-color: #e63946;">
+        <div class="hero-overlay"></div>
+        <div class="project-hero-img">
+            <img src="../images/Hospital Queue Mangemenet System.png" alt="Hospital Queue">
+        </div>
+        <div class="project-hero-content">
+            <div class="project-category-pill web-pill"><i class="fas fa-globe"></i> Web App</div>
+            <h1>🏥 Hospital Queue System</h1>
+            <p class="project-tagline">Automated Patient Flow &amp; Doctor Assignment Platform</p>
+            <div class="hero-meta">
+                <span><i class="fas fa-calendar-alt"></i> 2024</span>
+                <span><i class="fas fa-user"></i> Solo Project</span>
+                <span><i class="fas fa-heartbeat"></i> HealthTech</span>
+            </div>
+            <div class="hero-actions">
+                <a href="https://www.linkedin.com/in/dcsangeeth/details/projects/?profileUrn=urn%3Ali%3Afsd_profile%3AACoAAE2EY3YBvCf6M6gyJ2CZMnGwAMhvudtv2bA"
+                    target="_blank" class="btn-proj primary-p">
+                    <i class="fab fa-linkedin"></i> View on LinkedIn
+                </a>
+                <span class="btn-proj disabled-p"><i class="fab fa-github"></i> Code (Private)</span>
+            </div>
+        </div>
+    </section>
+
+    <main class="project-main">
+        <div class="proj-container">
+            <section class="proj-section">
+                <h2 class="proj-section-title"><i class="fas fa-info-circle"></i> Project Overview</h2>
+                <p>A comprehensive Hospital Queue Management System designed to modernize and streamline hospital
+                    operations. The system automates patient registration, intelligent doctor assignment based on
+                    specialization and availability, and real-time queue management — dramatically reducing patient wait
+                    times and improving hospital throughput.</p>
+                <p>Built with a Python Flask + FastAPI backend, MySQL database, and a clean responsive web frontend, the
+                    system provides real-time queue updates, priority handling for emergency cases, and a management
+                    dashboard for hospital administrators.</p>
+            </section>
+
+            <section class="proj-section">
+                <h2 class="proj-section-title"><i class="fas fa-users-cog"></i> System Modules</h2>
+                <div class="contributions-grid">
+                    <div class="contrib-card"><i class="fas fa-user-plus"></i>
+                        <h4>Patient Registration</h4>
+                        <p>Quick patient intake with symptom tagging and urgency classification</p>
+                    </div>
+                    <div class="contrib-card"><i class="fas fa-user-md"></i>
+                        <h4>Doctor Assignment</h4>
+                        <p>Intelligent auto-assignment based on specialization, workload, and availability</p>
+                    </div>
+                    <div class="contrib-card"><i class="fas fa-list-ol"></i>
+                        <h4>Queue Management</h4>
+                        <p>Real-time FIFO + priority queue with display boards for patients</p>
+                    </div>
+                    <div class="contrib-card"><i class="fas fa-chart-bar"></i>
+                        <h4>Admin Dashboard</h4>
+                        <p>Analytics for average wait time, doctor utilization, and daily stats</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="proj-section">
+                <h2 class="proj-section-title"><i class="fas fa-layer-group"></i> Tech Stack</h2>
+                <div class="tech-grid">
+                    <div class="tech-card"><i class="fab fa-python" style="color:#3776AB"></i><span>Python</span></div>
+                    <div class="tech-card"><i class="fas fa-server" style="color:#000"></i><span>Flask</span></div>
+                    <div class="tech-card"><i class="fas fa-bolt" style="color:#009688"></i><span>FastAPI</span></div>
+                    <div class="tech-card"><i class="fas fa-database" style="color:#00758F"></i><span>MySQL</span></div>
+                    <div class="tech-card"><i class="fab fa-html5" style="color:#E44D26"></i><span>HTML/CSS/JS</span>
+                    </div>
+                    <div class="tech-card"><i class="fas fa-link" style="color:#6C5CE7"></i><span>REST APIs</span></div>
+                </div>
+            </section>
+
+            <section class="proj-section">
+                <h2 class="proj-section-title"><i class="fas fa-star"></i> Key Features</h2>
+                <ul class="feature-list">
+                    <li><i class="fas fa-check-circle"></i> Automated patient intake and queue number generation</li>
+                    <li><i class="fas fa-check-circle"></i> AI-assisted doctor-patient matching by specialization</li>
+                    <li><i class="fas fa-check-circle"></i> Emergency priority escalation bypassing normal queue</li>
+                    <li><i class="fas fa-check-circle"></i> Real-time waiting room display board for patient status</li>
+                    <li><i class="fas fa-check-circle"></i> Multi-doctor, multi-department support</li>
+                    <li><i class="fas fa-check-circle"></i> Admin analytics: wait times, throughput, doctor stats</li>
+                </ul>
+            </section>
+
+            <section class="proj-section">
+                <h2 class="proj-section-title"><i class="fas fa-lightbulb"></i> What I Learned</h2>
+                <div class="takeaway-grid">
+                    <div class="takeaway-item"><span class="takeaway-num">01</span>
+                        <p>Building and combining Flask + FastAPI in a hybrid backend architecture</p>
+                    </div>
+                    <div class="takeaway-item"><span class="takeaway-num">02</span>
+                        <p>Priority queue data structures applied to real-world healthcare operations</p>
+                    </div>
+                    <div class="takeaway-item"><span class="takeaway-num">03</span>
+                        <p>Relational database design for complex multi-entity healthcare systems</p>
+                    </div>
+                    <div class="takeaway-item"><span class="takeaway-num">04</span>
+                        <p>Building real-time status updates without WebSocket (polling with Fetch API)</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer class="proj-footer">
+        <p>© 2025 DC Sangeeth &nbsp;|&nbsp; <a href="../index.html">Back to Portfolio</a></p>
+    </footer>
+
+    <script src="project-script.js"></script>
+</body>
+
+</html>
