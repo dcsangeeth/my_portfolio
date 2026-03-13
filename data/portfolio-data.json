@@ -179,25 +179,25 @@
       },
       {
         "name": "C / C++",
-        "level": 75,
+        "level": 40,
         "icon": "fas fa-microchip",
         "color": "#00599C"
       },
       {
         "name": "Java",
-        "level": 70,
+        "level": 40,
         "icon": "fab fa-java",
         "color": "#007396"
       },
       {
         "name": "JavaScript",
-        "level": 72,
+        "level": 50,
         "icon": "fab fa-js",
         "color": "#F7DF1E"
       },
       {
         "name": "SQL",
-        "level": 75,
+        "level": 30,
         "icon": "fas fa-database",
         "color": "#336791"
       }
@@ -211,7 +211,7 @@
       },
       {
         "name": "Flask / FastAPI",
-        "level": 78,
+        "level": 85,
         "icon": "fas fa-server",
         "color": "#000000"
       },
@@ -325,14 +325,14 @@
       "degree": "G.C.E. Advanced Level – Physical Science",
       "institution": "Prasident Collage - Embilipitiya",
       "period": "2018 – 2020",
-      "desc": "Combined Mathematics, Physics, Chemistry stream."
+      "desc": "Combined Mathematics - A, Physics -A, Chemistry -C."
     },
     {
       "id": "edu-003",
       "degree": "G.C.E. Ordinary Level",
-      "institution": "Mahinda College, Galle",
-      "period": "Completed 2018",
-      "desc": "Achieved 8 A passes in the 2018 national examination.",
+      "institution": "Rajapaksha Central Collage - Weeraketiya",
+      "period": "Completed 2017",
+      "desc": "Achieved 7A,1B,S1 passes in the 2017 national examination.",
       "icon": "fas fa-graduation-cap"
     }
   ]
