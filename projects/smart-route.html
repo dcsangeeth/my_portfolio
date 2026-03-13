@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Route Optimization – DC Sangeeth</title>
+    <link rel="icon" type="image/png" href="../images/profile.jpg">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="project-styles.css">
+</head>
+
+<body>
+    <nav class="project-nav">
+        <div class="nav-inner">
+            <a href="../index.html" class="back-btn"><i class="fas fa-arrow-left"></i> Back to Portfolio</a>
+            <div class="nav-logo"><span>DC</span>Sangeeth</div>
+            <button class="theme-toggle" id="themeToggle" title="Toggle theme"><i class="fas fa-moon"
+                    id="themeIcon"></i></button>
+        </div>
+    </nav>
+
+    <section class="project-hero" style="--hero-color: #e63946;">
+        <div class="hero-overlay"></div>
+        <div class="project-hero-img">
+            <img src="../images/SmartRouteOptimizationSystem.png" alt="Smart Route">
+        </div>
+        <div class="project-hero-content">
+            <div class="project-category-pill web-pill"><i class="fas fa-globe"></i> Web App</div>
+            <h1>Smart Route Optimization</h1>
+            <p class="project-tagline">Flask + Dijkstra's Algorithm + Google Maps API</p>
+            <div class="hero-meta">
+                <span><i class="fas fa-calendar-alt"></i> 2024</span>
+                <span><i class="fas fa-user"></i> Solo Project</span>
+                <span><i class="fas fa-route"></i> Web + Algorithm</span>
+            </div>
+            <div class="hero-actions">
+                <span class="btn-proj disabled-p"><i class="fas fa-eye"></i> Live Demo (Coming Soon)</span>
+                <span class="btn-proj disabled-p"><i class="fab fa-github"></i> Code (Private)</span>
+            </div>
+        </div>
+    </section>
+
+    <main class="project-main">
+        <div class="proj-container">
+            <section class="proj-section">
+                <h2 class="proj-section-title"><i class="fas fa-info-circle"></i> Project Overview</h2>
+                <p>A web-based route optimization system that leverages Dijkstra's shortest path algorithm integrated
+                    with Google Maps API to compute the fastest and most fuel-efficient travel routes between multiple
+                    stops. Built with a Python Flask backend and an interactive map-based frontend.</p>
+                <p>The system is ideal for delivery services, tour planners, and travelers who need to visit multiple
+                    locations in the most efficient order — minimizing both travel time and fuel consumption.</p>
+            </section>
+
+            <section class="proj-section">
+                <h2 class="proj-section-title"><i class="fas fa-sitemap"></i> How It Works</h2>
+                <div class="contributions-grid">
+                    <div class="contrib-card"><i class="fas fa-map-marker-alt"></i>
+                        <h4>1. Input Stops</h4>
+                        <p>User enters multiple locations using the interactive Google Maps interface</p>
+                    </div>
+                    <div class="contrib-card"><i class="fas fa-project-diagram"></i>
+                        <h4>2. Graph Build</h4>
+                        <p>Backend builds a weighted graph from the distance/time matrix via Maps API</p>
+                    </div>
+                    <div class="contrib-card"><i class="fas fa-route"></i>
+                        <h4>3. Dijkstra's Algorithm</h4>
+                        <p>Modified Dijkstra finds the globally optimal multi-stop route order</p>
+                    </div>
+                    <div class="contrib-card"><i class="fas fa-map"></i>
+                        <h4>4. Visual Route</h4>
+                        <p>Optimized route rendered on the map with turn-by-turn breakdown</p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="proj-section">
+                <h2 class="proj-section-title"><i class="fas fa-layer-group"></i> Tech Stack</h2>
+                <div class="tech-grid">
+                    <div class="tech-card"><i class="fab fa-python" style="color:#3776AB"></i><span>Python</span></div>
+                    <div class="tech-card"><i class="fas fa-server" style="color:#000"></i><span>Flask</span></div>
+                    <div class="tech-card"><i class="fas fa-map" style="color:#4285F4"></i><span>Google Maps API</span>
+                    </div>
+                    <div class="tech-card"><i class="fas fa-project-diagram" style="color:#e63946"></i><span>Dijkstra's
+                            Algo</span></div>
+                    <div class="tech-card"><i class="fab fa-html5" style="color:#E44D26"></i><span>HTML/CSS/JS</span>
+                    </div>
+                    <div class="tech-card"><i class="fas fa-database" style="color:#4DB33D"></i><span>JSON Data</span>
+                    </div>
+                </div>
+            </section>
+
+            <section class="proj-section">
+                <h2 class="proj-section-title"><i class="fas fa-star"></i> Key Features</h2>
+                <ul class="feature-list">
+                    <li><i class="fas fa-check-circle"></i> Multi-stop route optimization minimizing total travel
+                        distance and time</li>
+                    <li><i class="fas fa-check-circle"></i> Interactive Google Maps interface for easy stop selection
+                    </li>
+                    <li><i class="fas fa-check-circle"></i> Real-time distance matrix computation via Maps Distance
+                        Matrix API</li>
+                    <li><i class="fas fa-check-circle"></i> Comparison of optimized vs non-optimized route metrics</li>
+                    <li><i class="fas fa-check-circle"></i> Export route as PDF or share via link</li>
+                    <li><i class="fas fa-check-circle"></i> Suitable for delivery, tourism, and field service use cases
+                    </li>
+                </ul>
+            </section>
+
+            <section class="proj-section">
+                <h2 class="proj-section-title"><i class="fas fa-lightbulb"></i> What I Learned</h2>
+                <div class="takeaway-grid">
+                    <div class="takeaway-item"><span class="takeaway-num">01</span>
+                        <p>Implementing and adapting Dijkstra's algorithm for real-world multi-stop optimization</p>
+                    </div>
+                    <div class="takeaway-item"><span class="takeaway-num">02</span>
+                        <p>Integrating Google Maps JavaScript API and Distance Matrix API in a full-stack app</p>
+                    </div>
+                    <div class="takeaway-item"><span class="takeaway-num">03</span>
+                        <p>Building RESTful Flask APIs with clean separation of backend and frontend logic</p>
+                    </div>
+                    <div class="takeaway-item"><span class="takeaway-num">04</span>
+                        <p>Graph theory applications in practical transportation and logistics problems</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer class="proj-footer">
+        <p>© 2025 DC Sangeeth &nbsp;|&nbsp; <a href="../index.html">Back to Portfolio</a></p>
+    </footer>
+
+    <script src="project-script.js"></script>
+</body>
+
+</html>

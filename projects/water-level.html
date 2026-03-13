@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Water Level System – DC Sangeeth</title>
+    <link rel="icon" type="image/png" href="../images/profile.jpg">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="project-styles.css">
+</head>
+
+<body>
+    <nav class="project-nav">
+        <div class="nav-inner">
+            <a href="../index.html" class="back-btn"><i class="fas fa-arrow-left"></i> Back to Portfolio</a>
+            <div class="nav-logo"><span>DC</span>Sangeeth</div>
+            <button class="theme-toggle" id="themeToggle" title="Toggle theme"><i class="fas fa-moon"
+                    id="themeIcon"></i></button>
+        </div>
+    </nav>
+
+    <section class="project-hero" style="--hero-color: #00B894;">
+        <div class="hero-overlay"></div>
+        <div class="project-hero-img">
+            <img src="../images/water_level_indicator.jpg" alt="Water Level System">
+        </div>
+        <div class="project-hero-content">
+            <div class="project-category-pill iot-pill"><i class="fas fa-microchip"></i> IoT</div>
+            <h1>Water Level Indicator</h1>
+            <p class="project-tagline">Automatic &amp; Smart Switching System</p>
+            <div class="hero-meta">
+                <span><i class="fas fa-calendar-alt"></i> 2023</span>
+                <span><i class="fas fa-user"></i> Solo Project</span>
+                <span><i class="fas fa-microchip"></i> IoT + Mobile</span>
+            </div>
+            <div class="hero-actions">
+                <a href="https://drive.google.com/file/d/1wa_nh-LpVqmzEhq9rCAJ-P7d9NmA9ij-/view" target="_blank"
+                    class="btn-proj primary-p">
+                    <i class="fas fa-file-alt"></i> Project Report
+                </a>
+                <a href="https://github.com/dcsangeeth/water_level_control_system" target="_blank"
+                    class="btn-proj secondary-p">
+                    <i class="fab fa-github"></i> View Code
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <main class="project-main">
+        <div class="proj-container">
+            <section class="proj-section">
+                <h2 class="proj-section-title"><i class="fas fa-info-circle"></i> Project Overview</h2>
+                <p>An end-to-end IoT solution for real-time water level monitoring and automated pump control. I
+                    designed and built the entire system – from the hardware circuit using NodeMCU (ESP8266) and
+                    ultrasonic sensors to the Firebase real-time database backend and a custom Flutter mobile
+                    application.</p>
+                <p>The system allows users to monitor water levels from anywhere in the world through the mobile app,
+                    set thresholds for automatic pump switching, and receive instant alerts when levels reach critical
+                    points.</p>
+            </section>
+
+            <section class="proj-section">
+                <h2 class="proj-section-title"><i class="fas fa-microchip"></i> System Architecture</h2>
+                <div class="arch-diagram">
+                    <div class="arch-node"><i class="fas fa-water"></i><span>Ultrasonic Sensor</span></div>
+                    <div class="arch-arrow"><i class="fas fa-arrow-right"></i></div>
+                    <div class="arch-node"><i class="fas fa-microchip"></i><span>NodeMCU ESP8266</span></div>
+                    <div class="arch-arrow"><i class="fas fa-arrow-right"></i></div>
+                    <div class="arch-node"><i class="fas fa-fire-alt"></i><span>Firebase RTDB</span></div>
+                    <div class="arch-arrow"><i class="fas fa-arrow-right"></i></div>
+                    <div class="arch-node"><i class="fas fa-mobile-alt"></i><span>Flutter App</span></div>
+                </div>
+            </section>
+
+            <section class="proj-section">
+                <h2 class="proj-section-title"><i class="fas fa-layer-group"></i> Tech Stack</h2>
+                <div class="tech-grid">
+                    <div class="tech-card"><i class="fas fa-microchip" style="color:#00B894"></i><span>NodeMCU</span>
+                    </div>
+                    <div class="tech-card"><i class="fas fa-code" style="color:#0175C2"></i><span>Dart</span></div>
+                    <div class="tech-card"><i class="fas fa-mobile-alt" style="color:#54C5F8"></i><span>Flutter</span>
+                    </div>
+                    <div class="tech-card"><i class="fas fa-fire-alt" style="color:#FF6B35"></i><span>Firebase
+                            RTDB</span></div>
+                    <div class="tech-card"><i class="fas fa-robot" style="color:#333"></i><span>Arduino IDE</span></div>
+                    <div class="tech-card"><i class="fas fa-wifi" style="color:#6C5CE7"></i><span>ESP8266 WiFi</span>
+                    </div>
+                </div>
+            </section>
+
+            <section class="proj-section">
+                <h2 class="proj-section-title"><i class="fas fa-star"></i> Key Features</h2>
+                <ul class="feature-list">
+                    <li><i class="fas fa-check-circle"></i> Real-time water level display on mobile app with gauge
+                        visualisation</li>
+                    <li><i class="fas fa-check-circle"></i> Automatic pump ON/OFF based on configurable thresholds</li>
+                    <li><i class="fas fa-check-circle"></i> Manual override switch through the mobile app from anywhere
+                    </li>
+                    <li><i class="fas fa-check-circle"></i> Push notifications when water level is critically low or
+                        full</li>
+                    <li><i class="fas fa-check-circle"></i> Historical data logging for trend analysis</li>
+                    <li><i class="fas fa-check-circle"></i> Low-power design for continuous 24/7 operation</li>
+                </ul>
+            </section>
+
+            <section class="proj-section">
+                <h2 class="proj-section-title"><i class="fas fa-lightbulb"></i> What I Learned</h2>
+                <div class="takeaway-grid">
+                    <div class="takeaway-item"><span class="takeaway-num">01</span>
+                        <p>End-to-end IoT system design from hardware to cloud to mobile</p>
+                    </div>
+                    <div class="takeaway-item"><span class="takeaway-num">02</span>
+                        <p>Firebase real-time database integration with Flutter streams</p>
+                    </div>
+                    <div class="takeaway-item"><span class="takeaway-num">03</span>
+                        <p>Sensor calibration and signal processing for reliable readings</p>
+                    </div>
+                    <div class="takeaway-item"><span class="takeaway-num">04</span>
+                        <p>Power management and WiFi connectivity for embedded systems</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer class="proj-footer">
+        <p>© 2025 DC Sangeeth &nbsp;|&nbsp; <a href="../index.html">Back to Portfolio</a></p>
+    </footer>
+
+    <script src="project-script.js"></script>
+</body>
+
+</html>

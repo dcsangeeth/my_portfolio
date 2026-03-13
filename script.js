@@ -1,321 +1,409 @@
-// Initialize AOS Animation Library
-document.addEventListener('DOMContentLoaded', () => {
-    AOS.init({
-        duration: 1000,
-        once: true,
-        mirror: false,
-        offset: 100
-    });
-    
-    // Sticky Navigation
-    const nav = document.querySelector('nav');
-    
-    window.addEventListener('scroll', () => {
-        if (window.scrollY > 100) {
-            nav.style.padding = '10px 0';
-            nav.style.boxShadow = '0 5px 15px rgba(0, 0, 0, 0.1)';
-        } else {
-            nav.style.padding = '20px 0';
-            nav.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.1)';
-        }
-    });
-    
-    // Mobile Menu Toggle
-    const menuBtn = document.querySelector('.menu-btn');
-    const navLinks = document.querySelector('.nav-links');
-    
-    menuBtn.addEventListener('click', () => {
-        navLinks.classList.toggle('active');
-        menuBtn.querySelector('i').classList.toggle('fa-bars');
-        menuBtn.querySelector('i').classList.toggle('fa-times');
-    });
-    
-    // Close mobile menu when clicking a link
-    document.querySelectorAll('.nav-links a').forEach(link => {
-        link.addEventListener('click', () => {
-            navLinks.classList.remove('active');
-            menuBtn.querySelector('i').classList.add('fa-bars');
-            menuBtn.querySelector('i').classList.remove('fa-times');
-        });
-    });
-    
-    // Active link state on scroll
-    const sections = document.querySelectorAll('section');
-    const navLinks2 = document.querySelectorAll('.nav-links a');
-    
-    window.addEventListener('scroll', () => {
-        let current = '';
-        
-        sections.forEach(section => {
-            const sectionTop = section.offsetTop;
-            const sectionHeight = section.clientHeight;
-            if (window.scrollY >= (sectionTop - sectionHeight / 3)) {
-                current = section.getAttribute('id');
-            }
-        });
-        
-        navLinks2.forEach(link => {
-            link.classList.remove('active');
-            if (link.getAttribute('href').substring(1) === current) {
-                link.classList.add('active');
-            }
-        });
-    });
-    
-    // Project Filtering
-    const filterBtns = document.querySelectorAll('.filter-btn');
-    const projectCards = document.querySelectorAll('.project-card');
-    
-    filterBtns.forEach(btn => {
-        btn.addEventListener('click', () => {
-            // Update active button
-            filterBtns.forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
-            
-            // Filter projects
-            const filter = btn.getAttribute('data-filter');
-            
-            projectCards.forEach(card => {
-                if (filter === 'all') {
-                    card.style.display = 'block';
-                    setTimeout(() => {
-                        card.style.opacity = '1';
-                        card.style.transform = 'scale(1)';
-                    }, 100);
-                } else if (card.getAttribute('data-category') === filter) {
-                    card.style.display = 'block';
-                    setTimeout(() => {
-                        card.style.opacity = '1';
-                        card.style.transform = 'scale(1)';
-                    }, 100);
-                } else {
-                    card.style.opacity = '0';
-                    card.style.transform = 'scale(0.9)';
-                    setTimeout(() => {
-                        card.style.display = 'none';
-                    }, 300);
-                }
-            });
-        });
-    });
+/* =====================================================================
+   Portfolio Script – Dynamically renders all sections from
+   data/portfolio-data.json. Theme, modals, filters, AOS init.
+   ===================================================================== */
 
-    const setupCertRowScrolling = () => {
-        const rows = document.querySelectorAll('.cert-row');
-        
-        rows.forEach(row => {
-            const scrollContainer = row.querySelector('.cert-row-scroll');
-            const leftArrow = row.querySelector('.scroll-arrow.left');
-            const rightArrow = row.querySelector('.scroll-arrow.right');
-            
-            // Hide left arrow initially
-            leftArrow.style.opacity = '0.3';
-            
-            // Check scroll position
-            const checkScrollPosition = () => {
-                const isAtStart = scrollContainer.scrollLeft <= 10;
-                const isAtEnd = scrollContainer.scrollLeft + scrollContainer.clientWidth >= scrollContainer.scrollWidth - 10;
-                
-                leftArrow.style.opacity = isAtStart ? '0.3' : '0.7';
-                rightArrow.style.opacity = isAtEnd ? '0.3' : '0.7';
-            };
-            
-            // Initial check
-            checkScrollPosition();
-            
-            // Scroll left
-            leftArrow.addEventListener('click', () => {
-                scrollContainer.scrollBy({ left: -320, behavior: 'smooth' });
-            });
-            
-            // Scroll right
-            rightArrow.addEventListener('click', () => {
-                scrollContainer.scrollBy({ left: 320, behavior: 'smooth' });
-            });
-            
-            // Update arrow states on scroll
-            scrollContainer.addEventListener('scroll', checkScrollPosition);
-        });
-    };
-    
-    // Initialize certification filters if they exist
-    const certFilterBtns = document.querySelectorAll('.cert-filter-btn');
-    if (certFilterBtns.length > 0) {
-        setupCertRowScrolling();
-        
-        certFilterBtns.forEach(btn => {
-            btn.addEventListener('click', function() {
-                // Remove active class from all buttons
-                certFilterBtns.forEach(b => b.classList.remove('active'));
-                // Add active class to clicked button
-                this.classList.add('active');
-                
-                // Get filter value
-                const filterValue = this.getAttribute('data-filter');
-                
-                // Show/hide rows based on filter
-                const rows = document.querySelectorAll('.cert-row');
-                
-                if (filterValue === 'all') {
-                    // Show all rows
-                    rows.forEach(row => {
-                        row.classList.remove('hidden');
-                    });
-                } else {
-                    // Show only the matching row and hide others
-                    rows.forEach(row => {
-                        if (row.getAttribute('data-priority-row') === filterValue) {
-                            row.classList.remove('hidden');
-                        } else {
-                            row.classList.add('hidden');
-                        }
-                    });
-                }
-            });
-        });
-    }
-    
-    // Drag to scroll functionality
-    const certRowScrolls = document.querySelectorAll('.cert-row-scroll');
-    certRowScrolls.forEach(scrollContainer => {
-        let isDragging = false;
-        let startX;
-        let scrollLeft;
-        
-        scrollContainer.addEventListener('mousedown', (e) => {
-            isDragging = true;
-            startX = e.pageX - scrollContainer.offsetLeft;
-            scrollLeft = scrollContainer.scrollLeft;
-            scrollContainer.style.cursor = 'grabbing';
-        });
-        
-        scrollContainer.addEventListener('mouseleave', () => {
-            isDragging = false;
-            scrollContainer.style.cursor = 'grab';
-        });
-        
-        scrollContainer.addEventListener('mouseup', () => {
-            isDragging = false;
-            scrollContainer.style.cursor = 'grab';
-        });
-        
-        scrollContainer.addEventListener('mousemove', (e) => {
-            if (!isDragging) return;
-            e.preventDefault();
-            const x = e.pageX - scrollContainer.offsetLeft;
-            const walk = (x - startX) * 2; // Scroll speed
-            scrollContainer.scrollLeft = scrollLeft - walk;
-        });
-        
-        // Touch events for mobile
-        scrollContainer.addEventListener('touchstart', (e) => {
-            isDragging = true;
-            startX = e.touches[0].pageX - scrollContainer.offsetLeft;
-            scrollLeft = scrollContainer.scrollLeft;
-        });
-        
-        scrollContainer.addEventListener('touchend', () => {
-            isDragging = false;
-        });
-        
-        scrollContainer.addEventListener('touchmove', (e) => {
-            if (!isDragging) return;
-            const x = e.touches[0].pageX - scrollContainer.offsetLeft;
-            const walk = (x - startX) * 2;
-            scrollContainer.scrollLeft = scrollLeft - walk;
-        });
-    });
-    
-    // Contact Form Animation
-    const inputs = document.querySelectorAll('.input-group input, .input-group textarea');
-    
-    inputs.forEach(input => {
-        input.addEventListener('focus', () => {
-            input.parentNode.classList.add('focus');
-        });
-        
-        input.addEventListener('blur', () => {
-            if (input.value === '') {
-                input.parentNode.classList.remove('focus');
-            }
-        });
-    });
-    
-    // Form Submission
-    const contactForm = document.getElementById('contactForm');
-    if (contactForm) {
-        contactForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            // Get form values
-            const name = document.getElementById('name').value;
-            const email = document.getElementById('email').value;
-            const subject = document.getElementById('subject').value;
-            const message = document.getElementById('message').value;
-            
-            // Simple validation
-            if (!name || !email || !subject || !message) {
-                alert('Please fill in all fields');
-                return;
-            }
-            
-            // Format the message body with user details
-            const messageBody = `Name: ${name}%0D%0AEmail: ${email}%0D%0A%0D%0A${message}`;
-            
-            // Create mailto URL with all the parameters
-            const mailtoUrl = `mailto:dcsangeeth@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(messageBody)}`;
-            
-            // Open the mail client
-            window.location.href = mailtoUrl;
-            
-            // Show a message that email client should open
-            const formMessage = document.getElementById('formMessage');
-            if (formMessage) {
-                formMessage.textContent = "Opening your email client...";
-                formMessage.style.color = "green";
-            }
-            
-            // Optional: Reset the form after sending
-            contactForm.reset();
-        });
-    }
-    // Add typing animation to hero text
-    const heroTitle = document.querySelector('.hero-text h1');
-    const heroSubtitle = document.querySelector('.hero-text h2');
-    
-    if (heroTitle && heroSubtitle) {
-        // Function to add typing animation class
-        const addTypingAnimation = (element, delay) => {
-            element.style.opacity = '0';
-            setTimeout(() => {
-                element.classList.add('typing-animation');
-                element.style.opacity = '1';
-            }, delay);
-        };
-        
-        // Apply typing animations
-        addTypingAnimation(heroTitle, 500);
-        addTypingAnimation(heroSubtitle, 1500);
-    }
-    
-    // Timeline scroll animation enhancements
-    const timelineItems = document.querySelectorAll('.timeline-item');
-    
-    const observerOptions = {
-        threshold: 0.2,
-        rootMargin: '0px'
-    };
-    
-    const observerCallback = (entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('animate-timeline');
-            }
-        });
-    };
-    
-    const observer = new IntersectionObserver(observerCallback, observerOptions);
-    
-    timelineItems.forEach(item => {
-        observer.observe(item);
-    });
+/* ─── THEME ─────────────────────────────────────────────────────── */
+const html = document.documentElement;
+const themeBtn = document.getElementById('themeToggle');
+const themeIcon = document.getElementById('themeIcon');
+
+function applyTheme(t) {
+  html.setAttribute('data-theme', t);
+  if (themeIcon) themeIcon.className = t === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
+  localStorage.setItem('portfolio-theme', t);
+}
+applyTheme(localStorage.getItem('portfolio-theme') || 'light');
+if (themeBtn) themeBtn.addEventListener('click', () =>
+  applyTheme(html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark'));
+
+/* ─── NAVBAR ─────────────────────────────────────────────────────── */
+const navbar = document.getElementById('navbar');
+const menuBtn = document.getElementById('menuBtn');
+const navLinks = document.getElementById('navLinks');
+
+window.addEventListener('scroll', () => {
+  if (navbar) navbar.classList.toggle('scrolled', window.scrollY > 50);
+  highlightNav();
 });
+if (menuBtn) menuBtn.addEventListener('click', () => navLinks && navLinks.classList.toggle('open'));
+
+document.querySelectorAll('.nav-links a').forEach(a => {
+  a.addEventListener('click', () => navLinks && navLinks.classList.remove('open'));
+});
+
+function highlightNav() {
+  const sections = document.querySelectorAll('section[id]');
+  let current = '';
+  sections.forEach(s => { if (window.scrollY >= s.offsetTop - 100) current = s.id; });
+  document.querySelectorAll('.nav-links a').forEach(a => {
+    a.classList.toggle('active', a.getAttribute('href') === '#' + current);
+  });
+}
+
+/* ─── TYPING HERO TEXT ───────────────────────────────────────────── */
+const roles = ['Electrical & Electronic Engineer', 'Flutter Mobile Developer', 'ML / AI Enthusiast', 'IoT Systems Developer'];
+let ri = 0, ci = 0, typing = true;
+const typedEl = document.getElementById('typedText');
+function typeLoop() {
+  if (!typedEl) return;
+  if (typing) {
+    if (ci < roles[ri].length) { typedEl.textContent = roles[ri].slice(0, ++ci); setTimeout(typeLoop, 60); }
+    else { typing = false; setTimeout(typeLoop, 2200); }
+  } else {
+    if (ci > 0) { typedEl.textContent = roles[ri].slice(0, --ci); setTimeout(typeLoop, 35); }
+    else { typing = true; ri = (ri + 1) % roles.length; setTimeout(typeLoop, 300); }
+  }
+}
+typeLoop();
+
+/* ─── HIRE ME BUTTON ─────────────────────────────────────────────── */
+const hireMeBtn = document.getElementById('hireMeBtn');
+if (hireMeBtn) hireMeBtn.addEventListener('click', () => {
+  document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
+  setTimeout(() => openHireMeModal(), 600);
+});
+
+/* ─── SKILLS TABS ────────────────────────────────────────────────── */
+document.querySelectorAll('.skill-tab').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.skill-tab').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.skills-panel').forEach(p => p.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById('tab-' + btn.dataset.tab)?.classList.add('active');
+  });
+});
+
+/* ─── SCROLL ARROWS (cert rows) ──────────────────────────────────── */
+document.addEventListener('click', e => {
+  const arrow = e.target.closest('.scroll-arrow');
+  if (!arrow) return;
+  const row = arrow.closest('.cert-row')?.querySelector('.cert-row-scroll');
+  if (row) row.scrollBy({ left: arrow.classList.contains('left') ? -280 : 280, behavior: 'smooth' });
+});
+
+/* ─── MODALS ─────────────────────────────────────────────────────── */
+// Generic close helpers
+function closeModal(id) {
+  const m = document.getElementById(id);
+  if (m) { m.classList.remove('active'); m.style.opacity = '0'; setTimeout(() => m.style.display = 'none', 300); }
+}
+function openModal(id) {
+  const m = document.getElementById(id);
+  if (!m) return;
+  m.style.display = 'flex';
+  requestAnimationFrame(() => { m.style.opacity = '1'; m.classList.add('active'); });
+}
+
+// Close on overlay click / Escape
+document.addEventListener('click', e => {
+  if (e.target.classList.contains('modal-overlay')) closeModal(e.target.id);
+});
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') document.querySelectorAll('.modal-overlay.active').forEach(m => closeModal(m.id));
+});
+document.querySelectorAll('.modal-close').forEach(btn =>
+  btn.addEventListener('click', () => closeModal(btn.closest('.modal-overlay')?.id)));
+
+// Hire Me modal
+function openHireMeModal() {
+  const m = document.getElementById('hireMeModal');
+  if (m) { m.style.display = 'flex'; requestAnimationFrame(() => m.classList.add('active')); }
+}
+document.getElementById('hireMeForm')?.addEventListener('submit', e => {
+  e.preventDefault();
+  const name = document.getElementById('hmName')?.value.trim();
+  const email = document.getElementById('hmEmail')?.value.trim();
+  const msg = document.getElementById('hmMessage')?.value.trim();
+  if (!name || !email || !msg) return;
+  alert(`Thanks ${name}! I'll get back to you at ${email} soon.`);
+  closeModal('hireMeModal');
+  e.target.reset();
+});
+
+// Experience modal (generic, populated by renderExperience)
+function openExpModal(exp) {
+  const m = document.getElementById('expModal');
+  if (!m) return;
+  document.getElementById('expModalTitle').textContent = exp.title || '';
+  document.getElementById('expModalCompany').textContent = exp.company || '';
+  document.getElementById('expModalPeriod').textContent = `${exp.period || ''} · ${exp.duration || ''}`;
+  document.getElementById('expModalLocation').textContent = exp.location || '';
+  document.getElementById('expModalType').textContent = exp.type || '';
+  document.getElementById('expModalDesc').textContent = exp.desc || '';
+  // Responsibilities
+  const ul = document.getElementById('expModalResp');
+  if (ul) {
+    ul.innerHTML = (exp.responsibilities || '')
+      .split('|').map(r => r.trim()).filter(Boolean)
+      .map(r => `<li>${r}</li>`).join('');
+  }
+  // Tech badges
+  const techDiv = document.getElementById('expModalTech');
+  if (techDiv) {
+    techDiv.innerHTML = (exp.tech || '').split(',')
+      .map(t => `<span class="tech-badge">${t.trim()}</span>`).join('');
+  }
+  openModal('expModal');
+}
+
+// Cert modal
+function openCertModal(cert) {
+  const m = document.getElementById('certModal');
+  if (!m) return;
+  document.getElementById('certModalTitle').textContent = cert.title || '';
+  document.getElementById('certModalIssuer').textContent = cert.issuer || '';
+  document.getElementById('certModalDate').textContent = cert.date || '';
+  document.getElementById('certModalDescription').textContent = cert.description || '';
+  const ul = document.getElementById('certModalSkills');
+  if (ul) {
+    ul.innerHTML = (cert.skills || '').split(',')
+      .map(s => `<li>${s.trim()}</li>`).join('');
+  }
+  const link = document.getElementById('certModalLink');
+  if (link) { link.href = cert.link || '#'; link.style.display = cert.link && cert.link !== '#' ? '' : 'none'; }
+  openModal('certModal');
+}
+
+/* ─── PROJECT FILTER ─────────────────────────────────────────────── */
+let currentFilter = 'all';
+document.querySelectorAll('.filter-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    currentFilter = btn.dataset.filter;
+    filterProjects();
+  });
+});
+function filterProjects() {
+  document.querySelectorAll('#projectsGrid .project-card').forEach(card => {
+    const show = currentFilter === 'all' || card.dataset.category === currentFilter;
+    card.style.display = show ? '' : 'none';
+  });
+}
+
+/* ─── CONTACT FORM ───────────────────────────────────────────────── */
+document.getElementById('contactForm')?.addEventListener('submit', e => {
+  e.preventDefault();
+  const btn = e.target.querySelector('button[type=submit]');
+  if (btn) { btn.textContent = '✅ Message Sent!'; btn.disabled = true; }
+  setTimeout(() => { if (btn) { btn.textContent = 'Send Message'; btn.disabled = false; } e.target.reset(); }, 3000);
+});
+
+/* ═══════════════════════════════════════════════════════════════════
+   JSON DATA LOADING & RENDERING
+   ═════════════════════════════════════════════════════════════════ */
+
+async function loadPortfolioData() {
+  try {
+    const res = await fetch('data/portfolio-data.json?_=' + Date.now());
+    if (!res.ok) throw new Error('HTTP ' + res.status);
+    return await res.json();
+  } catch (e) {
+    console.warn('portfolio-data.json not found, using hardcoded HTML.', e);
+    return null;
+  }
+}
+
+/* ── SKILLS ──────────────────────────────────────────────────────── */
+function renderSkills(skills) {
+  if (!skills) return;
+
+  function skillCard(s) {
+    const color = s.color || '#4361ee';
+    return `<div class="skill-icon-card">
+            <div class="skill-icon-wrap" style="background:linear-gradient(135deg,${color},${color}99)">
+                <i class="${s.icon || 'fas fa-code'}"></i>
+            </div>
+            <h4>${s.name}</h4>
+            <div class="skill-level-bar"><div class="skill-fill" style="width:${s.level || 0}%"></div></div>
+            <span class="skill-percent">${s.level || 0}%</span>
+        </div>`;
+  }
+
+  function softCard(s) {
+    const color = s.color || '#4361ee';
+    return `<div class="soft-skill-card">
+            <div class="soft-skill-icon-new" style="background:linear-gradient(135deg,${color},${color}88)">
+                <i class="${s.icon || 'fas fa-star'}"></i>
+            </div>
+            <div class="soft-skill-info">
+                <h4>${s.name}</h4>
+                <p>${s.desc || ''}</p>
+            </div>
+        </div>`;
+  }
+
+  const prog = document.getElementById('skills-programming');
+  const fram = document.getElementById('skills-frameworks');
+  const dom = document.getElementById('skills-domains');
+  const soft = document.getElementById('skills-soft');
+
+  if (prog && skills.programming?.length) prog.innerHTML = skills.programming.map(skillCard).join('');
+  if (fram && skills.frameworks?.length) fram.innerHTML = skills.frameworks.map(skillCard).join('');
+  if (dom && skills.domains?.length) dom.innerHTML = skills.domains.map(skillCard).join('');
+  if (soft && skills.soft?.length) soft.innerHTML = skills.soft.map(softCard).join('');
+}
+
+/* ── EXPERIENCE ──────────────────────────────────────────────────── */
+function renderExperience(experience) {
+  const container = document.getElementById('experienceTimeline');
+  if (!container || !experience?.length) return;
+  container.innerHTML = experience.map((e, i) => `
+        <div class="timeline-item clickable" data-aos="fade-right" data-aos-delay="${200 + i * 100}">
+            <div class="timeline-dot pulse"></div>
+            <div class="timeline-date"><span>${e.period || ''}</span></div>
+            <div class="timeline-content" data-exp='${encodeURIComponent(JSON.stringify(e))}' onclick='openExpModal(JSON.parse(decodeURIComponent(this.getAttribute("data-exp"))))' style="cursor:pointer">
+                <div class="exp-type-badge">${e.type || 'Work'}</div>
+                <h3>${e.title || ''}</h3>
+                <h4><i class="fas fa-building"></i> ${e.company || ''}</h4>
+                <p class="timeline-preview">${e.desc || ''}</p>
+                <div class="tech-stack">
+                    ${(e.tech || '').split(',').slice(0, 4).map(t => `<span>${t.trim()}</span>`).join('')}
+                </div>
+                <button class="btn small-btn details-btn" data-exp='${encodeURIComponent(JSON.stringify(e))}' onclick='event.stopPropagation();openExpModal(JSON.parse(decodeURIComponent(this.getAttribute("data-exp"))))'>
+                    <i class="fas fa-expand-alt"></i> View Full Details
+                </button>
+            </div>
+        </div>`).join('');
+}
+
+/* ── CERTIFICATIONS ──────────────────────────────────────────────── */
+function renderCertifications(certifications) {
+  const container = document.getElementById('certRowContainer');
+  if (!container || !certifications?.length) return;
+
+  const priorities = ['high', 'medium', 'low'];
+  const labelMap = { high: '🏅 High Priority', medium: '🎖 Medium Priority', low: '📜 Others' };
+  const badgeClass = { high: 'high-badge', medium: 'medium-badge', low: 'low-badge' };
+
+  let rowsHtml = '';
+  priorities.forEach(p => {
+    const certs = certifications.filter(c => c.priority === p);
+    if (!certs.length) return;
+    rowsHtml += `
+        <div class="cert-row" data-priority-row="${p}">
+            <div class="cert-row-label">
+                <span class="row-badge ${badgeClass[p]}">${labelMap[p]}</span>
+            </div>
+            <div class="cert-row-scroll">
+                ${certs.map(c => `
+                <div class="certification-card clickable" data-priority="${p}"
+                     data-cert='${encodeURIComponent(JSON.stringify(c))}' onclick='openCertModal(JSON.parse(decodeURIComponent(this.getAttribute("data-cert"))))'
+                     style="cursor:pointer">
+                    <div class="cert-priority-strip ${p}"></div>
+                    <div class="cert-icon-wrap" style="color:${c.color || '#4361ee'}">
+                        <i class="${c.icon || 'fas fa-certificate'}"></i>
+                    </div>
+                    <div class="cert-body">
+                        <h3>${c.title}</h3>
+                        <h4>${c.issuer}</h4>
+                        <div class="cert-date"><i class="fas fa-calendar-alt"></i> ${c.date}</div>
+                    </div>
+                    <div class="cert-footer">
+                        <span class="view-hint"><i class="fas fa-eye"></i> Click to view</span>
+                    </div>
+                </div>`).join('')}
+            </div>
+            <div class="scroll-indicator">
+                <div class="scroll-arrow left"><i class="fas fa-chevron-left"></i></div>
+                <div class="scroll-arrow right"><i class="fas fa-chevron-right"></i></div>
+            </div>
+        </div>`;
+  });
+
+  container.innerHTML = rowsHtml;
+}
+
+/* ── PROJECTS ────────────────────────────────────────────────────── */
+function renderProjects(projects) {
+  const grid = document.getElementById('projectsGrid');
+  if (!grid || !projects?.length) return;
+
+  const catLabels = { mobile: 'Mobile', web: 'Web', iot: 'IoT', ai: 'AI & ML' };
+  grid.innerHTML = projects.map((p, i) => `
+        <div class="project-card" data-category="${p.category}" data-aos="fade-up" data-aos-delay="${300 + i * 100}"
+             data-project-page="${p.demo || '#'}">
+            <div class="project-img">
+                <img src="images/${p.image || 'profile.jpg'}" alt="${p.title}" onerror="this.src='images/profile.jpg'">
+                <div class="project-overlay">
+                    <div class="overlay-content">
+                        <i class="fas fa-external-link-alt"></i>
+                        <span>View Details</span>
+                    </div>
+                </div>
+                <div class="project-category-badge">${catLabels[p.category] || p.category}</div>
+            </div>
+            <div class="project-info">
+                <h3>${p.title}</h3>
+                <p>${p.desc || ''}</p>
+                <div class="project-tech">
+                    ${(p.tech || '').split(',').slice(0, 3).map(t => `<span>${t.trim()}</span>`).join('')}
+                </div>
+                ${p.demo ? `<button class="btn small-btn view-project-btn" data-page="${p.demo}">
+                    <i class="fas fa-arrow-right"></i> View Project
+                </button>` : ''}
+            </div>
+        </div>`).join('');
+
+  // Attach click handlers
+  grid.querySelectorAll('.project-card, .view-project-btn').forEach(el => {
+    el.addEventListener('click', () => {
+      const page = el.dataset.page || el.closest('.project-card')?.dataset.projectPage;
+      if (page && page !== '#') window.open(page, '_blank');
+    });
+  });
+  filterProjects();
+}
+
+/* ── EDUCATION ───────────────────────────────────────────────────── */
+function renderEducation(education) {
+  const grid = document.getElementById('educationGrid');
+  if (!grid || !education?.length) return;
+
+  // Check which existing CSS class is available
+  grid.innerHTML = education.map((e, i) => `
+        <div class="edu-card" data-aos="fade-up" data-aos-delay="${200 + i * 100}">
+            <div class="edu-icon-wrap">
+                <i class="${e.icon || 'fas fa-graduation-cap'}"></i>
+            </div>
+            <div class="edu-info">
+                <span class="edu-period">${e.period || ''}</span>
+                <h3>${e.degree || ''}</h3>
+                <h4><i class="fas fa-map-marker-alt"></i> ${e.institution || ''}</h4>
+                <p>${e.desc || ''}</p>
+            </div>
+        </div>`).join('');
+}
+
+/* ── MAIN INIT ───────────────────────────────────────────────────── */
+document.addEventListener('DOMContentLoaded', async () => {
+  // Init AOS
+  if (typeof AOS !== 'undefined') AOS.init({ duration: 800, easing: 'ease-in-out', once: true, offset: 80 });
+
+  // Load JSON data and render all dynamic sections
+  const data = await loadPortfolioData();
+  if (data) {
+    renderSkills(data.skills);
+    renderExperience(data.experience);
+    renderCertifications(data.certifications);
+    renderProjects(data.projects);
+    renderEducation(data.education);
+
+    // Update hero meta info if present
+    if (data.meta) {
+      const cvLink = document.querySelector('a[href*="DC_Sangeeth_CV"]');
+      if (cvLink && data.meta.cv) cvLink.href = data.meta.cv;
+    }
+
+    // Re-init AOS after dynamic content
+    if (typeof AOS !== 'undefined') AOS.refreshHard();
+  }
+});
+
+/* ─── LOADING INDICATOR CSS (injected once) ─────────────────────── */
+(function () {
+  const style = document.createElement('style');
+  style.textContent = `.loading-indicator{display:flex;align-items:center;justify-content:center;gap:10px;padding:40px;color:var(--text-muted);font-size:.95rem;grid-column:1/-1;width:100%}`;
+  document.head.appendChild(style);
+})();

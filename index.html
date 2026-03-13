@@ -1,606 +1,275 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sangeeth</title>
-    <link rel="icon" type="image/png" href="images\profile.jpg">
+    <title>DC Sangeeth | EE Engineer & ML Enthusiast</title>
+    <meta name="description"
+        content="Portfolio of Chalana Sangeeth – Electrical & Electronic Engineering undergraduate, ML/AI Enthusiast, Flutter developer.">
+    <link rel="icon" type="image/png" href="images/profile.jpg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
 </head>
+
 <body>
-    <!-- Navigation -->
-    <nav>
+
+    <!-- ========== NAVIGATION ========== -->
+    <nav id="navbar">
         <div class="container">
             <div class="logo" data-aos="fade-right">
                 <a href="#home"><span>DC</span>Sangeeth</a>
             </div>
-            <div class="menu-btn">
-                <i class="fas fa-bars"></i>
+            <div class="nav-right">
+                <ul class="nav-links" id="navLinks">
+                    <li><a href="#home" class="active">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#skills">Skills</a></li>
+                    <li><a href="#experience">Experience</a></li>
+                    <li><a href="#certifications">Certificates</a></li>
+                    <li><a href="#projects">Projects</a></li>
+                    <li><a href="#education">Education</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+                <button class="theme-toggle" id="themeToggle" title="Toggle dark/light mode" aria-label="Toggle theme">
+                    <i class="fas fa-moon" id="themeIcon"></i>
+                </button>
+                <div class="menu-btn" id="menuBtn">
+                    <i class="fas fa-bars"></i>
+                </div>
             </div>
-            <ul class="nav-links">
-                <li><a href="#home" class="active">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#skills">Skills</a></li>
-                <li><a href="#experience">Experience</a></li>
-                <li><a href="#certifications">Certificate</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#education">Education</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
         </div>
     </nav>
 
-    <!-- Hero Section -->
+    <!-- ========== HERO SECTION ========== -->
     <section id="home" class="hero">
+        <div class="hero-bg-shapes">
+            <div class="shape-1"></div>
+            <div class="shape-2"></div>
+            <div class="shape-3"></div>
+        </div>
         <div class="container">
             <div class="hero-content">
-                <div class="hero-text" data-aos="fade-up" data-aos-delay="200">
-                    <h1>Chalana Sangeeth</h1>
-                    <h2>Electrical & Electronic Engineer (UG)<br>ML | AI Enthusiast</h2>
-                    <p>Undergraduate Engineer specializing in Electrical and Electronic Engineering and machine learning</p>
+                <div class="hero-text" data-aos="fade-up" data-aos-delay="100">
+                    <div class="hero-badge">👋 Welcome to my portfolio</div>
+                    <h1>Chalana <span class="highlight">Sangeeth</span></h1>
+                    <div class="hero-roles">
+                        <h2 class="typed-text" id="typedText">Electrical &amp; Electronic Engineer</h2>
+                    </div>
+                    <p>Undergraduate Engineer specializing in Electrical &amp; Electronic Engineering with a passion for
+                        AI, ML, IoT automation, and Flutter app development.</p>
                     <div class="cta-buttons">
-                        <a href="#contact" class="btn primary-btn">Hire Me</a>
-                        <a href="#projects" class="btn secondary-btn">See My Work</a>
-                        <a href="pdf\DC_Sangeeth_CV.pdf" download class="btn primary-btn">Download CV</a>
+                        <button class="btn primary-btn hire-me-btn" id="hireMeBtn">
+                            <i class="fas fa-handshake"></i> Hire Me
+                        </button>
+                        <a href="#projects" class="btn secondary-btn">
+                            <i class="fas fa-eye"></i> See My Work
+                        </a>
+                        <a href="pdf/DC_Sangeeth_CV.pdf" download class="btn outline-btn">
+                            <i class="fas fa-download"></i> Download CV
+                        </a>
+                    </div>
+                    <div class="hero-stats">
+                        <div class="stat">
+                            <span class="stat-num">4+</span>
+                            <span class="stat-label">Projects</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-num">10+</span>
+                            <span class="stat-label">Certifications</span>
+                        </div>
+                        <!-- <div class="stat">
+                            <span class="stat-num">1</span>
+                            <span class="stat-label">Internship</span>
+                        </div> -->
                     </div>
                 </div>
-                <div class="hero-image-wrapper">
+                <div class="hero-image-wrapper" data-aos="fade-left" data-aos-delay="300">
                     <div class="hero-image">
-                        <img src="images\mainImage.jpg" alt="Profile Image">
+                        <img src="images/mainImage.jpg" alt="Chalana Sangeeth">
+                        <div class="image-ring"></div>
+                        <div class="floating-badge badge-1"><i class="fas fa-code"></i> Flutter Dev</div>
+                        <div class="floating-badge badge-2"><i class="fas fa-brain"></i> ML/AI</div>
+                        <div class="floating-badge badge-3"><i class="fas fa-microchip"></i> IoT</div>
+                        <div class="floating-badge badge-4"><i class="fas fa-code"></i> python Dev</div>
                     </div>
-                    <div class="shape-accent"></div>
                 </div>
             </div>
         </div>
+        <div class="scroll-indicator">
+            <a href="#about">
+                <div class="scroll-dot"></div>
+            </a>
+        </div>
     </section>
 
-    <!-- About Section -->
+    <!-- ========== ABOUT SECTION ========== -->
     <section id="about" class="about">
         <div class="container">
             <h2 class="section-title" data-aos="fade-up">About Me</h2>
             <div class="about-content">
                 <div class="about-image" data-aos="fade-right" data-aos-delay="200">
-                    <img src="images\mainImage.jpg" alt="About Me">
-                    <!-- <div class="shape"></div> -->
+                    <img src="images/mainImage.jpg" alt="About Chalana Sangeeth">
+                    <div class="image-dots"></div>
                 </div>
                 <div class="about-text" data-aos="fade-left" data-aos-delay="400">
-                    <h3>Hello, I'm Chalana Sangeeth</h3>
-                    <p>I am Chalana Sangeeth, an undergraduate in Electrical and Electronic Engineering at South Eastern University of Sri Lanka, with a passion for AI, ML, and automation. I enjoy working on projects that combine electronics and intelligent systems.</p>
-                    <p>I have experience in IoT automation, AI model training, and Flutter app development. With certifications in Supervised Machine Learning and a Python programming internship, I am eager to expand my skills and explore innovative technologies.</p>
+                    <h3>Hello, I'm <span class="highlight">Chalana Sangeeth</span></h3>
+                    <p>I am an undergraduate in Electrical and Electronic Engineering at South Eastern University of Sri
+                        Lanka, with a passion for AI, ML, and automation. I enjoy working on projects that combine
+                        electronics and intelligent systems.</p>
+                    <p>I have experience in IoT automation, AI model training, and Flutter app development. With
+                        certifications in Supervised Machine Learning and a Python programming internship, I am eager to
+                        expand my skills and explore innovative technologies.</p>
                     <div class="about-details">
                         <div class="detail">
                             <i class="fas fa-graduation-cap"></i>
                             <div>
                                 <h4>Education</h4>
-                                <p>B. Sc. Engineering (Honors) in Electrical and Electronic Engineering (UG)</p>
+                                <p>B.Sc. Engineering (Honors) – EEE (UG)</p>
                             </div>
                         </div>
                         <div class="detail">
                             <i class="fas fa-map-marker-alt"></i>
                             <div>
                                 <h4>Location</h4>
-                                <p>Embilipitiya,Sri Lanka</p>
+                                <p>Embilipitiya, Sri Lanka</p>
                             </div>
                         </div>
                         <div class="detail">
                             <i class="fas fa-language"></i>
                             <div>
                                 <h4>Languages</h4>
-                                <p>Sinhala , English</p>
+                                <p>Sinhala, English</p>
                             </div>
                         </div>
                         <div class="detail">
                             <i class="fas fa-laptop-code"></i>
                             <div>
                                 <h4>Interests</h4>
-                                <p>IoT, Machine Learning , AI ,App Development</p>
+                                <p>IoT, Machine Learning, AI, App Development</p>
                             </div>
                         </div>
                     </div>
-                    <a href="pdf\DC_Sangeeth_CV.pdf" download class="btn primary-btn">Download CV</a>
+                    <a href="pdf/DC_Sangeeth_CV.pdf" download class="btn primary-btn">
+                        <i class="fas fa-download"></i> Download CV
+                    </a>
                 </div>
             </div>
         </div>
     </section>
 
-   
-    <!-- Skills Section -->
+    <!-- ========== SKILLS SECTION ========== -->
     <section id="skills" class="skills">
         <div class="container">
             <h2 class="section-title" data-aos="fade-up">My Skills</h2>
-            <div class="skills-content">
-                <div class="skill-category" data-aos="fade-up" data-aos-delay="200">
-                    <h3>Technical Skills</h3>
-                    <div class="skill-bars">
-                        <div class="skill-bar">
-                            <div class="skill-info">
-                                <span>Python</span>
-                                <span>85%</span>
-                            </div>
-                            <div class="progress-line"><span class="js"></span></div>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-info">
-                                <span>Dart</span>
-                                <span>80%</span>
-                            </div>
-                            <div class="progress-line"><span class="python"></span></div>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-info">
-                                <span>Flutter</span>
-                                <span>85%</span>
-                            </div>
-                            <div class="progress-line"><span class="react"></span></div>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-info">
-                                <span>Node.js</span>
-                                <span>70%</span>
-                            </div>
-                            <div class="progress-line"><span class="nodejs"></span></div>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-info">
-                                <span>Machine Learning</span>
-                                <span>65%</span>
-                            </div>
-                            <div class="progress-line"><span class="cpp"></span></div>
-                        </div>
-                    </div>
+            <div class="skills-tabs" data-aos="fade-up" data-aos-delay="100">
+                <button class="skill-tab active" data-tab="programming">Programming</button>
+                <button class="skill-tab" data-tab="frameworks">Frameworks & Tools</button>
+                <button class="skill-tab" data-tab="domains">Domains</button>
+                <button class="skill-tab" data-tab="soft">Soft Skills</button>
+            </div>
+
+            <!-- Skill panels rendered dynamically from data/portfolio-data.json -->
+            <div class="skills-panel active" id="tab-programming" data-aos="fade-up" data-aos-delay="200">
+                <div class="skills-icon-grid" id="skills-programming">
+                    <div class="loading-indicator"><i class="fas fa-spinner fa-spin"></i> Loading...</div>
                 </div>
-                <div class="soft-skills" data-aos="fade-up" data-aos-delay="400">
-                    <h3>Soft Skills</h3>
-                    <div class="soft-skills-grid">
-                        <div class="soft-skill">
-                            <div class="soft-skill-icon">
-                                <i class="fas fa-users"></i>
-                            </div>
-                            <h4>Teamwork</h4>
-                        </div>
-                        <div class="soft-skill">
-                            <div class="soft-skill-icon">
-                                <i class="fas fa-lightbulb"></i>
-                            </div>
-                            <h4>Problem Solving</h4>
-                        </div>
-                        <div class="soft-skill">
-                            <div class="soft-skill-icon">
-                                <i class="fas fa-comment-dots"></i>
-                            </div>
-                            <h4>Communication</h4>
-                        </div>
-                        <div class="soft-skill">
-                            <div class="soft-skill-icon">
-                                <i class="fas fa-chart-line"></i>
-                            </div>
-                            <h4>Adaptability</h4>
-                        </div>
-                        <div class="soft-skill">
-                            <div class="soft-skill-icon">
-                                <i class="fas fa-tasks"></i>
-                            </div>
-                            <h4>Time Management</h4>
-                        </div>
-                        <div class="soft-skill">
-                            <div class="soft-skill-icon">
-                                <i class="fas fa-project-diagram"></i>
-                            </div>
-                            <h4>Project Management</h4>
-                        </div>
-                    </div>
-                </div>
+            </div>
+            <div class="skills-panel" id="tab-frameworks" data-aos="fade-up" data-aos-delay="200">
+                <div class="skills-icon-grid" id="skills-frameworks"></div>
+            </div>
+            <div class="skills-panel" id="tab-domains" data-aos="fade-up" data-aos-delay="200">
+                <div class="skills-icon-grid" id="skills-domains"></div>
+            </div>
+            <div class="skills-panel" id="tab-soft" data-aos="fade-up" data-aos-delay="200">
+                <div class="soft-skills-grid-new" id="skills-soft"></div>
             </div>
         </div>
     </section>
 
-    <!-- Experience Section with Timeline -->
+    </section>
+
+    <!-- ========== EXPERIENCE SECTION ========== -->
     <section id="experience" class="experience">
         <div class="container">
             <h2 class="section-title" data-aos="fade-up">My Experience</h2>
-            <div class="timeline">
-                <div class="timeline-item" data-aos="fade-right" data-aos-delay="200">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-date">
-                        <span>2024 june - 2024 Sep</span>
-                    </div>
-                    <div class="timeline-content">
-                        <h3>Software Engineering Intern</h3>
-                        <h4>Digital Platform - Sri Lanka Telecom</h4>
-                        <p>As a Software Engineering Intern at Digital Platform - Sri Lanka Telecom, I contributed to full-stack development for a product management system. My role involved implementing features using Flutter, Dart,ensuring seamless API integrations, and participating in agile development cycles and team code reviews to enhance code quality.</p>
-                        <p>I gained hands-on experience with Flutter, Dart, API handling, and Git, strengthening my skills in front-end and back-end development, database management, and version control while working in a collaborative development environment.</p>
-                        <div class="tech-stack">
-                            <span>Flutter</span>
-                            <span>Dart</span>
-                            <span>API Handling</span>
-                            <span>Git</span>
-                        </div>
-                    </div>
-                </div>
-                <!-- <div class="timeline-item" data-aos="fade-left" data-aos-delay="300">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-date">
-                        <span>2023 - 2024</span>
-                    </div>
-                    <div class="timeline-content">
-                        <h3>Research Assistant</h3>
-                        <h4>University AI Lab</h4>
-                        <p>Assisted in developing machine learning models for predictive analytics in healthcare. Implemented data processing pipelines and conducted experiments to improve model accuracy.</p>
-                        <div class="tech-stack">
-                            <span>Python</span>
-                            <span>TensorFlow</span>
-                            <span>Scikit-learn</span>
-                            <span>Pandas</span>
-                        </div>
-                    </div>
-                </div> -->
-                <!-- <div class="timeline-item" data-aos="fade-right" data-aos-delay="400">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-date">
-                        <span>2022 - 2023</span>
-                    </div>
-                    <div class="timeline-content">
-                        <h3>Web Development Intern</h3>
-                        <h4>Creative Solutions Studio</h4>
-                        <p>Collaborated on front-end development for client websites. Created responsive designs and implemented animations to enhance user experience. Worked with a team of designers and developers.</p>
-                        <div class="tech-stack">
-                            <span>HTML/CSS</span>
-                            <span>JavaScript</span>
-                            <span>SASS</span>
-                            <span>Figma</span>
-                        </div>
-                    </div>
-                </div> -->
-                <!-- <div class="timeline-item" data-aos="fade-left" data-aos-delay="500">
-                    <div class="timeline-dot"></div>
-                    <div class="timeline-date">
-                        <span>2021 - 2022</span>
-                    </div>
-                    <div class="timeline-content">
-                        <h3>Robotics Club Lead</h3>
-                        <h4>University Engineering Society</h4>
-                        <p>Led a team of 10 engineering students in designing and building autonomous robots for university competitions. Managed project timelines and coordinated interdisciplinary collaboration.</p>
-                        <div class="tech-stack">
-                            <span>Arduino</span>
-                            <span>C++</span>
-                            <span>ROS</span>
-                            <span>3D Printing</span>
-                        </div>
-                    </div>
-                </div> -->
+            <p class="section-subtitle" data-aos="fade-up" data-aos-delay="100">Click on any experience card for full
+                details</p>
+            <div class="timeline" id="experienceTimeline">
+                <div class="loading-indicator"><i class="fas fa-spinner fa-spin"></i> Loading...</div>
             </div>
         </div>
     </section>
 
-   <!-- Certifications Section with Horizontal Scrolling -->
+
     <section id="certifications" class="certifications">
         <div class="container">
             <h2 class="section-title" data-aos="fade-up">My Certifications</h2>
-            <!-- <div class="certification-filters" data-aos="fade-up" data-aos-delay="100">
-                <button class="cert-filter-btn active" data-filter="all">All</button>
-                <button class="cert-filter-btn" data-filter="high">High Priority</button>
-                <button class="cert-filter-btn" data-filter="medium">Medium Priority</button>
-                <button class="cert-filter-btn" data-filter="low">Low Priority</button>
-            </div> -->
-            <div class="certifications-carousel" data-aos="fade-up">
-                <div class="row-container">
-                    <!-- Row 1 - High Priority -->
-                    <div class="cert-row" data-priority-row="high">
-                        <!-- <div class="cert-row-title">High Priority</div> -->
-                        <div class="cert-row-scroll">
-                            <div class="certification-card" data-priority="high">
-                                <div class="certification-icon">
-                                    <i class="fas fa-certificate"></i>
-                                </div>
-                                <div class="certification-content">
-                                    <h3>Supervised Machine Learning: Regression and Classification</h3>
-                                    <h4>DeepLearning.AI</h4>
-                                    <div class="certification-date">Jul 2024</div>
-                                    <a href="https://www.coursera.org/account/accomplishments/verify/KJRF24U2QG3V?utm_source=ln&utm_medium=certificate&utm_content=cert_image&utm_campaign=sharing_cta&utm_product=course" class="cert-link" target="_blank"><i class="fas fa-external-link-alt"></i> View</a>
-                                </div>
-                            </div>
-                            
-                            <div class="certification-card" data-priority="high">
-                                <div class="certification-icon">
-                                    <i class="fas fa-project-diagram"></i>
-                                </div>
-                                <div class="certification-content">
-                                    <h3>AI/ML Engineer - Stage 1</h3>
-                                    <h4>Centre for Open and Distance Education - SLIIT</h4>
-                                    <div class="certification-date">Apr 2025</div>
-                                    <a href="https://code.sliit.org/certificates/ujivvsovjz" class="cert-link" target="_blank"><i class="fas fa-external-link-alt"></i> View</a>
-                                </div>
-                            </div>
+            <p class="section-subtitle" data-aos="fade-up" data-aos-delay="100">Click any card to view full certificate
+                details</p>
 
-                            <div class="certification-card" data-priority="high">
-                                <div class="certification-icon">
-                                    <i class="fas fa-project-diagram"></i>
-                                </div>
-                                <div class="certification-content">
-                                    <h3>AI/ML Engineer - Stage 2</h3>
-                                    <h4>Centre for Open and Distance Education - SLIIT</h4>
-                                    <div class="certification-date">Apr 2025</div>
-                                    <a href="https://code.sliit.org/certificates/wdc06fpqln" class="cert-link" target="_blank"><i class="fas fa-external-link-alt"></i> View</a>
-                                </div>
-                            </div>
+            <div class="cert-priority-labels" data-aos="fade-up" data-aos-delay="150">
+                <span class="priority-label high"><i class="fas fa-star"></i> High Priority</span>
+                <span class="priority-label medium"><i class="fas fa-star-half-alt"></i> Medium Priority</span>
+                <span class="priority-label low"><i class="far fa-star"></i> Others</span>
+            </div>
 
-                            <div class="certification-card" data-priority="high">
-                                <div class="certification-icon">
-                                    <i class="fas fa-code"></i>
-                                </div>
-                                <div class="certification-content">
-                                    <h3>What is the Data Science</h3>
-                                    <h4>Coursera</h4>
-                                    <div class="certification-date">Aug 2023</div>
-                                    <a href="#" class="cert-link" target="_blank"><i class="fas fa-external-link-alt"></i> View</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="scroll-indicator">
-                            <div class="scroll-arrow left"><i class="fas fa-chevron-left"></i></div>
-                            <div class="scroll-arrow right"><i class="fas fa-chevron-right"></i></div>
-                        </div>
-                    </div>
-                            
-                           
-                          
-                    
-                    <!-- Row 2 - Medium Priority -->
-                    <div class="cert-row" data-priority-row="medium">
-                        <!-- <div class="cert-row-title">Medium Priority</div> -->
-                        <div class="cert-row-scroll">
-                            <div class="certification-card" data-priority="medium">
-                                <div class="certification-icon">
-                                    <i class="fas fa-mobile-alt"></i>
-                                </div>
-                                <div class="certification-content">
-                                    <h3>Python for Beginners</h3>
-                                    <h4>University of Moratuwa</h4>
-                                    <div class="certification-date">Jun 2022</div>
-                                    <a href="https://open.uom.lk/lms/mod/customcert/verify_certificate.php" class="cert-link" target="_blank"><i class="fas fa-external-link-alt"></i> View</a>
-                                </div>
-                            </div>
-                            
-                            <div class="certification-card" data-priority="medium">
-                                <div class="certification-icon">
-                                    <i class="fas fa-database"></i>
-                                </div>
-                                <div class="certification-content">
-                                    <h3>Python Programming MasterClass</h3>
-                                    <h4>Pantech Solutions</h4>
-                                    <div class="certification-date">June 2023</div>
-                                    <a href="#" class="cert-link" target="_blank"><i class="fas fa-external-link-alt"></i> View</a>
-                                </div>
-                            </div>
-                           
-                            
-                          
-                        </div>
-                        <div class="scroll-indicator">
-                            <div class="scroll-arrow left"><i class="fas fa-chevron-left"></i></div>
-                            <div class="scroll-arrow right"><i class="fas fa-chevron-right"></i></div>
-                        </div>
-                    </div>
-                    
-                    <!-- Row 3 - Low Priority -->
-                    <div class="cert-row" data-priority-row="low">
-                        <!-- <div class="cert-row-title">Low Priority</div> -->
-                        <div class="cert-row-scroll">
-                            <div class="certification-card" data-priority="low">
-                                <div class="certification-icon">
-                                    <i class="fas fa-cogs"></i>
-                                </div>
-                                <div class="certification-content">
-                                    <h3>Web Design For Beginners</h3>
-                                    <h4>University of Moratuwa</h4>
-                                    <div class="certification-date">Dec 2023</div>
-                                    <a href="#" class="cert-link" target="_blank"><i class="fas fa-external-link-alt"></i> View</a>
-                                </div>
-                            </div>
-                            
-                           
-                            
-                        </div>
-                        <div class="scroll-indicator">
-                            <div class="scroll-arrow left"><i class="fas fa-chevron-left"></i></div>
-                            <div class="scroll-arrow right"><i class="fas fa-chevron-right"></i></div>
-                        </div>
-                    </div>
+            <div class="certifications-carousel" id="certsCarousel" data-aos="fade-up" data-aos-delay="200">
+                <div class="row-container" id="certRowContainer">
+                    <div class="loading-indicator"><i class="fas fa-spinner fa-spin"></i> Loading...</div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Projects Section -->
     <section id="projects" class="projects">
         <div class="container">
             <h2 class="section-title" data-aos="fade-up">My Projects</h2>
+            <p class="section-subtitle" data-aos="fade-up" data-aos-delay="100">Click any card to explore the full
+                project details</p>
             <div class="project-filters" data-aos="fade-up" data-aos-delay="200">
                 <button class="filter-btn active" data-filter="all">All</button>
-                <!-- <button class="filter-btn" data-filter="web">Web</button> -->
                 <button class="filter-btn" data-filter="mobile">Mobile</button>
                 <button class="filter-btn" data-filter="web">Web</button>
                 <button class="filter-btn" data-filter="iot">IoT</button>
-                <button class="filter-btn" data-filter="ai">AI/ML</button>
+                <button class="filter-btn" data-filter="ai">AI &amp; ML</button>
             </div>
-            <div class="projects-grid">
-                <div class="project-card" data-category="mobile" data-aos="fade-up" data-aos-delay="300">
-                    <div class="project-img">
-                        <img src="images\power_prox.jpg" alt="Power Prox">
-                    </div>
-                    <div class="project-info">
-                        <h3>Power Prox - Sri Lanka Telecom</h3>
-                        <p>PowerProx is a web-based asset management system for tracking and maintaining Rectifiers, Generators, Batteries, SPDs, and UPS systems.</p>
-                        <p>During my training, I worked as a team member, contributing to feature development, UI enhancements, and API integrations using Flutter and Dart, improving inspection processes and asset updates.</p>
-                        <div class="project-tech">
-                            <span>Flutter</span>
-                            <span>Dart</span>
-                            <span>API Handling</span>
-                            <span>API Integration</span>
-                        </div>
-                        <div class="project-links">
-                            <a href="https://www.linkedin.com/posts/oshad_sltpowerprox-powersystematyourfingertips-activity-7283492823167836162-tCWK?utm_source=share&utm_medium=member_desktop&rcm=ACoAAE2EY3YBvCf6M6gyJ2CZMnGwAMhvudtv2bA" class="btn small-btn" target="_blank"><i class="fas fa-eye"></i> Endorse 1</a>
-                            <a href="https://www.linkedin.com/posts/oshad_ai-slt-innovation-activity-7236672080774074368-qc1i?utm_source=share&utm_medium=member_desktop&rcm=ACoAAE2EY3YBvCf6M6gyJ2CZMnGwAMhvudtv2bA" class="btn small-btn" target="_blank"><i class="fas fa-eye"></i> Endorse 2</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="project-card" data-category="iot" data-aos="fade-up" data-aos-delay="400">
-                    <div class="project-img">
-                        <img src="images\water_level_indicator.jpg" alt="Water Level Indicator & Crontroller">
-                    </div>
-                    <div class="project-info">
-                        <h3>Water Level Indicator and Automatic & Smart Switiching System</h3>
-                        <p>Designed and implemented a water level indicator and Automatic & Smart
-                            Switching system using Nodemcu, Flutter, and Firebase with my own created
-                            Mobile Application. It can show real-time Water Level and control switches
-                            using a Mobile application and alerts show in real-time.</p>
-                        <div class="project-tech">
-                            <span>Firebase</span>
-                            <span>Arduino</span>
-                            <span>Dart</span>
-                            <span>Iot</span>
-                        </div>
-                        <div class="project-links">
-                            <a href="https://drive.google.com/file/d/1wa_nh-LpVqmzEhq9rCAJ-P7d9NmA9ij-/view" class="btn small-btn"  target="_blank"><i class="fas fa-eye"></i> Details</a>
-                            <a href="https://github.com/dcsangeeth/water_level_control_system" class="btn small-btn"  target="_blank"><i class="fab fa-github"></i> Code</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="project-card" data-category="web" data-aos="fade-up" data-aos-delay="400">
-                    <div class="project-img">
-                        <img src="images\SmartRouteOptimizationSystem.png" alt="Water Level Indicator & Crontroller">
-                    </div>
-                    <div class="project-info">
-                        <h3>Smart Route Optimization System | Flask + Dijkstra + Google Maps API</h3>
-                        <p>🚀 Developed a route optimization system using Flask, Dijkstra’s algorithm, and Google Maps API to find the fastest and shortest travel paths based on distance and time.Ideal for travelers, delivery services, and tour planners to save time and fuel by optimizing multi-stop routes.</p>
-                        <div class="project-tech">
-                            <span>Flask</span>
-                            <span>Python</span>
-                            <span>Google Map API</span>
-                            <span>Dijkstra Algorithm</span>
-                        </div>
-                        <div class="project-links">
-                            <a href="" class="btn small-btn"  target="_blank"><i class="fas fa-eye"></i> Details</a>
-                            <a href="" class="btn small-btn"  target="_blank"><i class="fab fa-github"></i> Code</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="project-card" data-category="web" data-aos="fade-up" data-aos-delay="400">
-                    <div class="project-img">
-                        <img src="images\Hospital Queue Mangemenet System.png" alt="Hospital Queue Management System">
-                    </div>
-                    <div class="project-info">
-                        <h3>🚑 Hospital Queue Management System</h3>
-                        <p> Hospital Queue Management System 🏥 designed to streamline hospital operations by automating and optimizing patient flow, doctor assignment, and queue handling.</p>
-                        <div class="project-tech">
-                            <span>Flask</span>
-                            <span>Python</span>
-                            <span>MySQL</span>
-                            <span>FastAPI</span>
-                        </div>
-                        <div class="project-links">
-                            <a href="https://www.linkedin.com/in/dcsangeeth/details/projects/?profileUrn=urn%3Ali%3Afsd_profile%3AACoAAE2EY3YBvCf6M6gyJ2CZMnGwAMhvudtv2bA" class="btn small-btn"  target="_blank"><i class="fas fa-eye"></i> Details</a>
-                            <a href="" class="btn small-btn"  target="_blank"><i class="fab fa-github"></i> Code</a>
-                        </div>
-                    </div>
-                </div>
-                <!-- <div class="project-card" data-category="iot" data-aos="fade-up" data-aos-delay="500">
-                    <div class="project-img">
-                        <img src="/api/placeholder/400/300" alt="Project 3">
-                    </div>
-                    <div class="project-info">
-                        <h3>Smart Home System</h3>
-                        <p>An IoT-based home automation system with temperature monitoring, light control, and security features.</p>
-                        <div class="project-tech">
-                            <span>Arduino</span>
-                            <span>ESP32</span>
-                            <span>MQTT</span>
-                        </div>
-                        <div class="project-links">
-                            <a href="#" class="btn small-btn"><i class="fas fa-eye"></i> Demo</a>
-                            <a href="#" class="btn small-btn"><i class="fab fa-github"></i> Code</a>
-                        </div>
-                    </div>
-                </div> -->
-                <!-- <div class="project-card" data-category="mobile" data-aos="fade-up" data-aos-delay="600">
-                    <div class="project-img">
-                        <img src="/api/placeholder/400/300" alt="Project 4">
-                    </div>
-                    <div class="project-info">
-                        <h3>Fitness Tracker App</h3>
-                        <p>A mobile app for tracking workouts, nutrition, and health metrics with personalized recommendations.</p>
-                        <div class="project-tech">
-                            <span>React Native</span>
-                            <span>Firebase</span>
-                            <span>Redux</span>
-                        </div>
-                        <div class="project-links">
-                            <a href="#" class="btn small-btn"><i class="fas fa-eye"></i> Demo</a>
-                            <a href="#" class="btn small-btn"><i class="fab fa-github"></i> Code</a>
-                        </div>
-                    </div>
-                </div> -->
+            <div class="projects-grid" id="projectsGrid">
+                <!-- Project cards rendered dynamically from data/portfolio-data.json -->
+                <div class="loading-indicator"><i class="fas fa-spinner fa-spin"></i> Loading...</div>
             </div>
         </div>
     </section>
 
-     <!-- Education Section -->
-     <section id="education" class="education">
+    <!-- ========== EDUCATION SECTION ========== -->
+    <section id="education" class="education">
         <div class="container">
-            <h2 class="section-title" data-aos="fade-up">My Education</h2>
-            <div class="education-timeline">
-                <div class="education-item" data-aos="fade-right" data-aos-delay="200">
-                    <div class="education-dot"></div>
-                    <div class="education-date">
-                        <span>2022 - Present</span>
-                    </div>
-                    <div class="education-content">
-                        <h3>B.Sc. Engineering (Honors) in Electrical and Electronic Engineering (UG)</h3>
-                        <h4>South Eastern University of Sri Lanka</h4>
-                        <!-- <p>Currently pursuing undergraduate studies with a focus on Electrical and Electronic Engineering. Relevant coursework includes digital electronics, control systems, power systems, and embedded systems design.</p> -->
-                    </div>
-                </div>
-                <div class="education-item" data-aos="fade-left" data-aos-delay="300">
-                    <div class="education-dot"></div>
-                    <div class="education-date">
-                        <span>2018 - 2020</span>
-                    </div>
-                    <div class="education-content">
-                        <h3>Advanced Level Examination</h3>
-                        <h4>Prasident College - Embilipitiya</h4>
-                        <!-- <p>Completed Advanced Level education with a focus on Physical Sciences. Subjects included Physics, Chemistry, and Combined Mathematics.</p> -->
-                    </div>
-                </div>
-                <div class="education-item" data-aos="fade-left" data-aos-delay="300">
-                    <div class="education-dot"></div>
-                    <div class="education-date">
-                        <span>2012 - 2018</span>
-                    </div>
-                    <div class="education-content">
-                        <h3>Ordinary School Level</h3>
-                        <h4>Rajapaksha Central Collage - Weeraketiya</h4>
-                        <!-- <p>Completed Advanced Level education with a focus on Physical Sciences. Subjects included Physics, Chemistry, and Combined Mathematics.</p> -->
-                    </div>
-                </div>
+            <h2 class="section-title" data-aos="fade-up">Education</h2>
+            <div class="education-grid" id="educationGrid" data-aos="fade-up" data-aos-delay="200">
+                <div class="loading-indicator"><i class="fas fa-spinner fa-spin"></i> Loading...</div>
             </div>
         </div>
     </section>
 
-
-    <!-- Contact Section -->
+    <!-- ========== CONTACT <!-- ========== CONTACT SECTION ========== -->
     <section id="contact" class="contact">
         <div class="container">
             <h2 class="section-title" data-aos="fade-up">Get In Touch</h2>
             <div class="contact-content">
                 <div class="contact-info" data-aos="fade-right" data-aos-delay="200">
                     <h3>Contact Information</h3>
-                    <p>Feel free to reach out to me for collaboration or job opportunities. I'm currently available for internships and part-time positions.</p>
+                    <p>Feel free to reach out for collaboration, job opportunities, or any project discussions. I'm
+                        currently available for internships and part-time positions.</p>
                     <div class="contact-details">
                         <div class="contact-item">
                             <i class="fas fa-map-marker-alt"></i>
-                            <span>Embilipitiya - Sri Lanka</span>
+                            <span>Embilipitiya, Sri Lanka</span>
                         </div>
                         <div class="contact-item">
                             <i class="fas fa-envelope"></i>
@@ -608,7 +277,7 @@
                         </div>
                         <div class="contact-item">
                             <i class="fas fa-phone"></i>
-                            <span>+94 719130003</span>
+                            <span>+94 719 130 003</span>
                         </div>
                         <div class="contact-item">
                             <i class="fas fa-graduation-cap"></i>
@@ -616,13 +285,17 @@
                         </div>
                     </div>
                     <div class="social-links">
-                        <a href="https://github.com/dcsangeeth" class="social-link"  target="_blank"><i class="fab fa-github"></i></a>
-                        <a href="https://www.linkedin.com/in/dcsangeeth/" class="social-link"  target="_blank"><i class="fab fa-linkedin-in"></i></a>
-                        <a href="https://web.facebook.com/dcsangeeth/" class="social-link" target="_blank"><i class="fab fa-facebook"></i></a>
-                        <a href="https://wa.me/qr/R7NQF4BZVKRDP1" class="social-link" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                        <a href="https://github.com/dcsangeeth" class="social-link" target="_blank" title="GitHub"><i
+                                class="fab fa-github"></i></a>
+                        <a href="https://www.linkedin.com/in/dcsangeeth/" class="social-link" target="_blank"
+                            title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="https://web.facebook.com/dcsangeeth/" class="social-link" target="_blank"
+                            title="Facebook"><i class="fab fa-facebook"></i></a>
+                        <a href="https://wa.me/qr/R7NQF4BZVKRDP1" class="social-link" target="_blank"
+                            title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
                     </div>
                 </div>
-                <form id="contactForm" data-aos="fade-left" data-aos-delay="400">
+                <div class="contact-form-wrap" data-aos="fade-left" data-aos-delay="400">
                     <h3>Send Me a Message</h3>
                     <form id="contactForm">
                         <div class="input-group">
@@ -641,25 +314,22 @@
                             <textarea id="message" name="message" rows="5" required></textarea>
                             <label for="message">Your Message</label>
                         </div>
-                        <button type="submit" class="btn primary-btn">Send Message</button>
+                        <button type="submit" class="btn primary-btn">
+                            <i class="fas fa-paper-plane"></i> Send Message
+                        </button>
                     </form>
                     <div id="formMessage" class="form-message"></div>
-                    <!-- <div class="fallback">
-                        <p>If the email client doesn't open automatically, you can email me directly at: <a href="mailto:eg20018@seu.ac.lk" id="directEmail">eg20018@seu.ac.lk</a></p>
-                    </div> -->
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Footer -->
+    <!-- ========== FOOTER ========== -->
     <footer>
         <div class="container">
             <div class="footer-content">
-                <div class="footer-logo">
-                    <span>DC</span>Sangeeth
-                </div>
-                <p>© 2025 DC SANGEETH. All Rights Reserved.</p>
+                <div class="footer-logo"><span>DC</span>Sangeeth</div>
+                <p>© 2025 DC Sangeeth. All Rights Reserved.</p>
                 <div class="footer-links">
                     <a href="#home">Home</a>
                     <a href="#about">About</a>
@@ -667,12 +337,123 @@
                     <a href="#experience">Experience</a>
                     <a href="#projects">Projects</a>
                     <a href="#contact">Contact</a>
+                    <a href="admin.html" class="admin-link"><i class="fas fa-lock"></i> Admin</a>
                 </div>
             </div>
         </div>
     </footer>
 
+    <!-- ========== EXPERIENCE MODAL ========== -->
+    <div class="modal-overlay" id="experienceModal">
+        <div class="modal-box">
+            <button class="modal-close" id="closeExpModal"><i class="fas fa-times"></i></button>
+            <div class="modal-header">
+                <div class="modal-icon exp-icon"><i class="fas fa-briefcase"></i></div>
+                <div>
+                    <h2 id="expModalTitle"></h2>
+                    <p id="expModalCompany"></p>
+                </div>
+            </div>
+            <div class="modal-meta">
+                <span id="expModalPeriod"><i class="fas fa-calendar-alt"></i></span>
+                <span id="expModalDuration"><i class="fas fa-clock"></i></span>
+                <span id="expModalLocation"><i class="fas fa-map-marker-alt"></i></span>
+                <span id="expModalType"><i class="fas fa-tag"></i></span>
+            </div>
+            <div class="modal-section">
+                <h4><i class="fas fa-align-left"></i> Overview</h4>
+                <p id="expModalDescription"></p>
+            </div>
+            <div class="modal-section">
+                <h4><i class="fas fa-list-check"></i> Key Responsibilities</h4>
+                <ul id="expModalResponsibilities" class="resp-list"></ul>
+            </div>
+            <div class="modal-section">
+                <h4><i class="fas fa-code"></i> Technologies Used</h4>
+                <div id="expModalTech" class="modal-tech-stack"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ========== CERTIFICATION MODAL ========== -->
+    <div class="modal-overlay" id="certModal">
+        <div class="modal-box">
+            <button class="modal-close" id="closeCertModal"><i class="fas fa-times"></i></button>
+            <div class="modal-header">
+                <div class="modal-icon cert-icon" id="certModalIconBg">
+                    <i id="certModalIcon"></i>
+                </div>
+                <div>
+                    <h2 id="certModalTitle"></h2>
+                    <p id="certModalIssuer"></p>
+                </div>
+            </div>
+            <div class="modal-meta">
+                <span id="certModalDate"><i class="fas fa-calendar-alt"></i></span>
+                <span id="certModalPriority"><i class="fas fa-star"></i></span>
+            </div>
+            <div class="modal-section">
+                <h4><i class="fas fa-align-left"></i> About this Certificate</h4>
+                <p id="certModalDescription"></p>
+            </div>
+            <div class="modal-section">
+                <h4><i class="fas fa-lightbulb"></i> Skills Learned</h4>
+                <div id="certModalSkills" class="modal-tech-stack"></div>
+            </div>
+            <div class="modal-actions">
+                <a href="#" id="certModalLink" target="_blank" class="btn primary-btn">
+                    <i class="fas fa-external-link-alt"></i> View Certificate
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- ========== HIRE ME MODAL ========== -->
+    <div class="modal-overlay" id="hireMeModal">
+        <div class="modal-box hire-modal">
+            <button class="modal-close" id="closeHireModal"><i class="fas fa-times"></i></button>
+            <div class="hire-modal-header">
+                <div class="hire-avatar"><img src="images/mainImage.jpg" alt="Sangeeth"></div>
+                <div>
+                    <h2>Let's Work Together!</h2>
+                    <p>Available for internships, part-time &amp; freelance projects</p>
+                </div>
+            </div>
+            <div class="hire-services">
+                <div class="service-card">
+                    <i class="fas fa-mobile-alt"></i>
+                    <h4>Mobile App Dev</h4>
+                    <p>Flutter cross-platform apps</p>
+                </div>
+                <div class="service-card">
+                    <i class="fas fa-microchip"></i>
+                    <h4>IoT Solutions</h4>
+                    <p>Smart embedded systems</p>
+                </div>
+                <div class="service-card">
+                    <i class="fas fa-brain"></i>
+                    <h4>ML/AI Models</h4>
+                    <p>Python ML pipelines</p>
+                </div>
+                <div class="service-card">
+                    <i class="fas fa-globe"></i>
+                    <h4>Web Development</h4>
+                    <p>Flask / Node.js backends</p>
+                </div>
+            </div>
+            <div class="hire-cta">
+                <a href="#contact" class="btn primary-btn" id="hireContactBtn">
+                    <i class="fas fa-envelope"></i> Send Me a Message
+                </a>
+                <a href="pdf/DC_Sangeeth_CV.pdf" download class="btn secondary-btn">
+                    <i class="fas fa-download"></i> Download CV
+                </a>
+            </div>
+        </div>
+    </div>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
     <script src="script.js"></script>
 </body>
+
 </html>

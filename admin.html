@@ -1,0 +1,1668 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel – DC Sangeeth Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #4361ee;
+            --primary-dark: #3a0ca3;
+            --accent: #4cc9f0;
+            --bg: #f0f2f5;
+            --bg-card: #fff;
+            --bg-nav: rgba(240, 242, 245, .97);
+            --text: #1a1a2e;
+            --text-muted: #6b7280;
+            --border: #e5e7eb;
+            --shadow: 0 4px 20px rgba(0, 0, 0, .08);
+            --shadow-lg: 0 10px 40px rgba(0, 0, 0, .13);
+            --input-bg: #fff;
+            --danger: #ef233c;
+            --success: #06d6a0;
+        }
+
+        [data-theme="dark"] {
+            --bg: #0f172a;
+            --bg-card: #1e293b;
+            --bg-nav: rgba(15, 23, 42, .97);
+            --text: #e2e8f0;
+            --text-muted: #94a3b8;
+            --border: #334155;
+            --shadow: 0 4px 20px rgba(0, 0, 0, .3);
+            --shadow-lg: 0 10px 40px rgba(0, 0, 0, .4);
+            --input-bg: #1e293b;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box
+        }
+
+        html {
+            scroll-behavior: smooth
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            min-height: 100vh;
+            transition: background .3s, color .3s
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit
+        }
+
+        /* ---- LOGIN ---- */
+        #loginScreen {
+            position: fixed;
+            inset: 0;
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0a0f1e 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            transition: opacity .5s ease;
+        }
+
+        .login-card {
+            background: rgba(30, 41, 59, .8);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(67, 97, 238, .3);
+            border-radius: 24px;
+            padding: 45px 40px;
+            max-width: 420px;
+            width: 90%;
+            box-shadow: 0 30px 80px rgba(0, 0, 0, .5);
+            animation: slideUp .5s ease;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px)
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0)
+            }
+        }
+
+        .login-logo {
+            text-align: center;
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: #fff;
+            margin-bottom: 8px;
+        }
+
+        .login-logo span {
+            color: var(--accent)
+        }
+
+        .login-subtitle {
+            text-align: center;
+            color: rgba(255, 255, 255, .5);
+            font-size: .85rem;
+            margin-bottom: 35px
+        }
+
+        .login-field {
+            margin-bottom: 18px;
+            position: relative
+        }
+
+        .login-field label {
+            display: block;
+            font-size: .82rem;
+            font-weight: 600;
+            color: rgba(255, 255, 255, .6);
+            margin-bottom: 6px
+        }
+
+        .login-field input {
+            width: 100%;
+            padding: 14px 16px 14px 44px;
+            background: rgba(255, 255, 255, .05);
+            border: 1.5px solid rgba(255, 255, 255, .1);
+            border-radius: 12px;
+            color: #fff;
+            font-size: .95rem;
+            font-family: inherit;
+            transition: all .3s;
+        }
+
+        .login-field input:focus {
+            outline: none;
+            border-color: var(--primary);
+            background: rgba(67, 97, 238, .1);
+            box-shadow: 0 0 0 3px rgba(67, 97, 238, .15)
+        }
+
+        .login-field .field-icon {
+            position: absolute;
+            left: 14px;
+            bottom: 14px;
+            color: rgba(255, 255, 255, .4);
+            font-size: 1rem
+        }
+
+        .login-btn {
+            width: 100%;
+            padding: 15px;
+            border: none;
+            border-radius: 12px;
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: #fff;
+            font-size: 1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all .3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 8px;
+        }
+
+        .login-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(67, 97, 238, .5)
+        }
+
+        .login-err {
+            color: #ef233c;
+            background: rgba(239, 35, 60, .1);
+            border: 1px solid rgba(239, 35, 60, .2);
+            padding: 10px 14px;
+            border-radius: 8px;
+            font-size: .85rem;
+            margin-top: 12px;
+            display: none;
+            text-align: center;
+        }
+
+        .login-warn {
+            background: rgba(255, 209, 102, .08);
+            border: 1px solid rgba(255, 209, 102, .2);
+            border-radius: 10px;
+            padding: 12px 14px;
+            margin-top: 20px;
+            color: rgba(255, 209, 102, .8);
+            font-size: .78rem;
+            line-height: 1.5;
+        }
+
+        .login-warn i {
+            margin-right: 5px
+        }
+
+        /* ---- ADMIN LAYOUT ---- */
+        #adminPanel {
+            display: none
+        }
+
+        .admin-nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: var(--bg-nav);
+            backdrop-filter: blur(16px);
+            border-bottom: 1px solid var(--border);
+            z-index: 100;
+        }
+
+        .admin-nav-inner {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 14px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .admin-logo {
+            font-size: 1.2rem;
+            font-weight: 800;
+            color: var(--text)
+        }
+
+        .admin-logo span {
+            color: var(--primary)
+        }
+
+        .admin-nav-right {
+            display: flex;
+            align-items: center;
+            gap: 12px
+        }
+
+        .nav-icon-btn {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            border: 1.5px solid var(--border);
+            background: var(--bg-card);
+            color: var(--text);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: .9rem;
+            transition: all .3s;
+        }
+
+        .nav-icon-btn:hover {
+            background: var(--primary);
+            color: #fff;
+            border-color: var(--primary)
+        }
+
+        .back-portfolio {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            padding: 8px 16px;
+            border-radius: 30px;
+            background: var(--primary);
+            color: #fff;
+            font-size: .82rem;
+            font-weight: 600;
+            transition: all .3s;
+        }
+
+        .back-portfolio:hover {
+            opacity: .85
+        }
+
+        .admin-wrapper {
+            display: flex;
+            margin-top: 65px;
+            min-height: calc(100vh - 65px)
+        }
+
+        /* SIDEBAR */
+        .admin-sidebar {
+            width: 240px;
+            background: var(--bg-card);
+            border-right: 1px solid var(--border);
+            position: fixed;
+            top: 65px;
+            left: 0;
+            height: calc(100vh - 65px);
+            overflow-y: auto;
+            padding: 20px 0;
+            transition: transform .3s;
+        }
+
+        .sidebar-label {
+            font-size: .7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-muted);
+            padding: 10px 20px 5px
+        }
+
+        .sidebar-link {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 20px;
+            cursor: pointer;
+            font-size: .9rem;
+            font-weight: 500;
+            color: var(--text-muted);
+            transition: all .2s;
+            border-left: 3px solid transparent;
+        }
+
+        .sidebar-link:hover {
+            background: rgba(67, 97, 238, .06);
+            color: var(--primary);
+            border-left-color: var(--primary)
+        }
+
+        .sidebar-link.active {
+            background: rgba(67, 97, 238, .1);
+            color: var(--primary);
+            border-left-color: var(--primary);
+            font-weight: 600
+        }
+
+        .sidebar-link i {
+            width: 18px;
+            text-align: center;
+            font-size: .95rem
+        }
+
+        /* MAIN */
+        .admin-content {
+            margin-left: 240px;
+            flex: 1;
+            padding: 30px;
+            max-width: 100%
+        }
+
+        .admin-section {
+            display: none
+        }
+
+        .admin-section.active {
+            display: block
+        }
+
+        .page-header {
+            margin-bottom: 28px
+        }
+
+        .page-header h1 {
+            font-size: 1.6rem;
+            font-weight: 800;
+            margin-bottom: 5px
+        }
+
+        .page-header p {
+            color: var(--text-muted);
+            font-size: .88rem
+        }
+
+        /* STATS CARDS */
+        .stats-row {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+            margin-bottom: 30px
+        }
+
+        .stat-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            padding: 22px;
+            box-shadow: var(--shadow);
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .stat-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            color: #fff;
+            flex-shrink: 0;
+        }
+
+        .stat-info h3 {
+            font-size: 1.6rem;
+            font-weight: 800;
+            line-height: 1
+        }
+
+        .stat-info p {
+            font-size: .78rem;
+            color: var(--text-muted);
+            margin-top: 3px
+        }
+
+        /* TABLE */
+        .card-box {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            box-shadow: var(--shadow);
+            overflow: hidden;
+            margin-bottom: 24px
+        }
+
+        .card-box-header {
+            padding: 18px 22px;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .card-box-header h3 {
+            font-size: 1rem;
+            font-weight: 700
+        }
+
+        .add-btn {
+            display: flex;
+            align-items: center;
+            gap: 7px;
+            padding: 9px 18px;
+            border-radius: 30px;
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: #fff;
+            font-size: .82rem;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            transition: all .3s;
+        }
+
+        .add-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(67, 97, 238, .4)
+        }
+
+        .data-table {
+            width: 100%;
+            border-collapse: collapse
+        }
+
+        .data-table th,
+        .data-table td {
+            padding: 13px 18px;
+            text-align: left;
+            border-bottom: 1px solid var(--border);
+            font-size: .85rem
+        }
+
+        .data-table th {
+            font-weight: 700;
+            font-size: .78rem;
+            text-transform: uppercase;
+            letter-spacing: .5px;
+            color: var(--text-muted);
+            background: rgba(67, 97, 238, .03)
+        }
+
+        .data-table tr:last-child td {
+            border-bottom: none
+        }
+
+        .data-table tr:hover td {
+            background: rgba(67, 97, 238, .035)
+        }
+
+        .action-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: .75rem;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            transition: all .2s;
+            margin-right: 5px;
+        }
+
+        .edit-btn {
+            background: rgba(67, 97, 238, .1);
+            color: var(--primary)
+        }
+
+        .edit-btn:hover {
+            background: var(--primary);
+            color: #fff
+        }
+
+        .del-btn {
+            background: rgba(239, 35, 60, .08);
+            color: var(--danger)
+        }
+
+        .del-btn:hover {
+            background: var(--danger);
+            color: #fff
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 3px 10px;
+            border-radius: 20px;
+            font-size: .72rem;
+            font-weight: 700
+        }
+
+        .badge-high {
+            background: rgba(239, 35, 60, .1);
+            color: #ef233c
+        }
+
+        .badge-medium {
+            background: rgba(255, 150, 0, .1);
+            color: #e98a00
+        }
+
+        .badge-low {
+            background: rgba(6, 214, 160, .1);
+            color: #06d6a0
+        }
+
+        .badge-mobile {
+            background: rgba(84, 197, 248, .1);
+            color: #0096c7
+        }
+
+        .badge-web {
+            background: rgba(67, 97, 238, .1);
+            color: var(--primary)
+        }
+
+        .badge-iot {
+            background: rgba(0, 184, 148, .1);
+            color: #00b894
+        }
+
+        .badge-ai {
+            background: rgba(114, 9, 183, .1);
+            color: #7209b7
+        }
+
+        /* MODAL / FORM */
+        .form-modal {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, .6);
+            backdrop-filter: blur(6px);
+            z-index: 9000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            opacity: 0;
+            visibility: hidden;
+            transition: all .3s;
+        }
+
+        .form-modal.active {
+            opacity: 1;
+            visibility: visible
+        }
+
+        .form-modal-box {
+            background: var(--bg-card);
+            border-radius: 20px;
+            padding: 30px;
+            max-width: 550px;
+            width: 100%;
+            max-height: 85vh;
+            overflow-y: auto;
+            box-shadow: 0 30px 80px rgba(0, 0, 0, .3);
+            transform: scale(.92);
+            transition: transform .3s;
+            border: 1px solid var(--border);
+        }
+
+        .form-modal.active .form-modal-box {
+            transform: scale(1)
+        }
+
+        .form-modal-title {
+            font-size: 1.1rem;
+            font-weight: 800;
+            margin-bottom: 22px;
+            color: var(--text)
+        }
+
+        .form-group {
+            margin-bottom: 16px
+        }
+
+        .form-group label {
+            display: block;
+            font-size: .82rem;
+            font-weight: 600;
+            margin-bottom: 5px;
+            color: var(--text-muted)
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 11px 14px;
+            border: 1.5px solid var(--border);
+            border-radius: 10px;
+            font-size: .9rem;
+            background: var(--input-bg);
+            color: var(--text);
+            font-family: inherit;
+            transition: all .3s;
+        }
+
+        .form-group textarea {
+            min-height: 90px;
+            resize: vertical
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(67, 97, 238, .1);
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px
+        }
+
+        .form-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+            justify-content: flex-end
+        }
+
+        .save-btn {
+            padding: 10px 24px;
+            border-radius: 30px;
+            border: none;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: .88rem;
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: #fff;
+            transition: all .3s;
+        }
+
+        .save-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(67, 97, 238, .4)
+        }
+
+        .cancel-btn {
+            padding: 10px 20px;
+            border-radius: 30px;
+            border: 1.5px solid var(--border);
+            cursor: pointer;
+            font-weight: 600;
+            font-size: .88rem;
+            background: transparent;
+            color: var(--text-muted);
+            transition: all .3s;
+        }
+
+        .cancel-btn:hover {
+            border-color: var(--danger);
+            color: var(--danger)
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 50px 20px;
+            color: var(--text-muted)
+        }
+
+        .empty-state i {
+            font-size: 2.5rem;
+            opacity: .3;
+            display: block;
+            margin-bottom: 14px
+        }
+
+        /* RESPONSIVE */
+        @media(max-width:768px) {
+            .admin-sidebar {
+                transform: translateX(-240px);
+                z-index: 90
+            }
+
+            .admin-sidebar.open {
+                transform: translateX(0)
+            }
+
+            .admin-content {
+                margin-left: 0
+            }
+
+            .stats-row {
+                grid-template-columns: 1fr 1fr
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ====== LOGIN ====== -->
+    <div id="loginScreen">
+        <div class="login-card">
+            <div class="login-logo"><span>DC</span>Sangeeth</div>
+            <p class="login-subtitle">Portfolio Admin Panel</p>
+            <div class="login-field">
+                <label>Username</label>
+                <i class="fas fa-user field-icon"></i>
+                <input type="text" id="loginUser" placeholder="Enter username" autocomplete="username">
+            </div>
+            <div class="login-field">
+                <label>Password</label>
+                <i class="fas fa-lock field-icon"></i>
+                <input type="password" id="loginPass" placeholder="Enter password" autocomplete="current-password">
+            </div>
+            <button class="login-btn" id="loginBtn"><i class="fas fa-sign-in-alt"></i> Login</button>
+            <div class="login-err" id="loginErr">Invalid username or password</div>
+            <div class="login-warn">
+                <i class="fas fa-shield-alt"></i>
+                <strong>Security Note:</strong> This admin panel uses client-side authentication suitable for static
+                hosting. Do not store sensitive data here.
+            </div>
+        </div>
+    </div>
+
+    <!-- ====== ADMIN PANEL ====== -->
+    <div id="adminPanel">
+        <!-- Nav -->
+        <nav class="admin-nav">
+            <div class="admin-nav-inner">
+                <div class="admin-logo"><span>DC</span>Sangeeth <span
+                        style="font-size:.75rem;opacity:.5;font-weight:400;margin-left:8px">Admin</span></div>
+                <div class="admin-nav-right">
+                    <button class="nav-icon-btn" id="adminThemeToggle" title="Toggle theme"><i class="fas fa-moon"
+                            id="adminThemeIcon"></i></button>
+                    <a href="index.html" class="back-portfolio"><i class="fas fa-eye"></i> View Portfolio</a>
+                    <button id="exportJsonBtn" onclick="exportJSON()" title="Export & save JSON"
+                    style="display:flex;align-items:center;gap:6px;padding:8px 16px;border-radius:30px;background:linear-gradient(135deg,#06d6a0,#018a5a);color:#fff;font-size:.82rem;font-weight:600;border:none;cursor:pointer;transition:all .3s">
+                    <i class="fas fa-download"></i><span>Export JSON</span>
+                </button>
+                <button class="nav-icon-btn" id="logoutBtn" title="Logout"><i
+                            class="fas fa-sign-out-alt"></i></button>
+                </div>
+            </div>
+        </nav>
+
+        <div class="admin-wrapper">
+            <!-- Sidebar -->
+            <aside class="admin-sidebar" id="adminSidebar">
+                <div class="sidebar-label">Main</div>
+                <div class="sidebar-link active" data-section="dashboard"><i class="fas fa-th-large"></i> Dashboard
+                </div>
+                <div class="sidebar-label">Sections</div>
+                <div class="sidebar-link" data-section="projects"><i class="fas fa-folder-open"></i> Projects</div>
+                <div class="sidebar-link" data-section="experience"><i class="fas fa-briefcase"></i> Experience</div>
+                <div class="sidebar-link" data-section="certifications"><i class="fas fa-certificate"></i>
+                    Certifications</div>
+                <div class="sidebar-link" data-section="skills"><i class="fas fa-code"></i> Skills</div>
+                <div class="sidebar-link" data-section="education"><i class="fas fa-graduation-cap"></i> Education</div>
+            </aside>
+
+            <!-- Content -->
+            <main class="admin-content">
+
+                <!-- Dashboard -->
+                <section id="section-dashboard" class="admin-section active">
+                    <div class="page-header">
+                        <h1>Dashboard</h1>
+                        <p>Manage all portfolio sections from one place</p>
+                    </div>
+                    <div class="stats-row">
+                        <div class="stat-card">
+                            <div class="stat-icon" style="background:linear-gradient(135deg,#4361ee,#3a0ca3)"><i
+                                    class="fas fa-folder-open"></i></div>
+                            <div class="stat-info">
+                                <h3 id="statProjects">0</h3>
+                                <p>Projects</p>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon" style="background:linear-gradient(135deg,#f72585,#7209b7)"><i
+                                    class="fas fa-certificate"></i></div>
+                            <div class="stat-info">
+                                <h3 id="statCerts">0</h3>
+                                <p>Certifications</p>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon" style="background:linear-gradient(135deg,#4cc9f0,#0096c7)"><i
+                                    class="fas fa-briefcase"></i></div>
+                            <div class="stat-info">
+                                <h3 id="statExp">0</h3>
+                                <p>Experiences</p>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon" style="background:linear-gradient(135deg,#06d6a0,#018a5a)"><i
+                                    class="fas fa-code"></i></div>
+                            <div class="stat-info">
+                                <h3 id="statSkills">0</h3>
+                                <p>Skills</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-box">
+                        <div class="card-box-header">
+                            <h3><i class="fas fa-info-circle" style="color:var(--primary)"></i> &nbsp;How to use</h3>
+                        </div>
+                        <div style="padding:22px;line-height:1.8;color:var(--text-muted);font-size:.9rem">
+                            <p><strong style="color:var(--text)">1. Navigate sections</strong> using the sidebar to
+                                manage Projects, Experience, Certifications, Skills, and Education.</p>
+                            <p style="margin-top:8px"><strong style="color:var(--text)">2. Add / Edit / Delete</strong>
+                                items using the buttons in each section table.</p>
+                            <p style="margin-top:8px"><strong style="color:var(--text)">3. Data storage:</strong> All
+                                changes are saved in <code
+                                    style="background:var(--bg);padding:1px 6px;border-radius:4px">localStorage</code>.
+                                The portfolio reads this data automatically.</p>
+                            <p style="margin-top:8px"><strong style="color:var(--text)">4. Note:</strong> localStorage
+                                is browser-specific. Export / backup is not yet implemented.</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Projects -->
+                <section id="section-projects" class="admin-section">
+                    <div class="page-header">
+                        <h1>Projects</h1>
+                        <p>Add, edit or remove portfolio projects</p>
+                    </div>
+                    <div class="card-box">
+                        <div class="card-box-header">
+                            <h3>All Projects</h3>
+                            <button class="add-btn" onclick="openForm('project')"><i class="fas fa-plus"></i> Add
+                                Project</button>
+                        </div>
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>Title</th>
+                                    <th>Category</th>
+                                    <th>Tech</th>
+                                    <th>Page Link</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="projectsTableBody"></tbody>
+                        </table>
+                    </div>
+                </section>
+
+                <!-- Experience -->
+                <section id="section-experience" class="admin-section">
+                    <div class="page-header">
+                        <h1>Experience</h1>
+                        <p>Manage your work experience timeline</p>
+                    </div>
+                    <div class="card-box">
+                        <div class="card-box-header">
+                            <h3>Work Experience</h3>
+                            <button class="add-btn" onclick="openForm('experience')"><i class="fas fa-plus"></i> Add
+                                Experience</button>
+                        </div>
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>Role</th>
+                                    <th>Company</th>
+                                    <th>Period</th>
+                                    <th>Type</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="experienceTableBody"></tbody>
+                        </table>
+                    </div>
+                </section>
+
+                <!-- Certifications -->
+                <section id="section-certifications" class="admin-section">
+                    <div class="page-header">
+                        <h1>Certifications</h1>
+                        <p>Manage certificates by priority</p>
+                    </div>
+                    <div class="card-box">
+                        <div class="card-box-header">
+                            <h3>All Certifications</h3>
+                            <button class="add-btn" onclick="openForm('cert')"><i class="fas fa-plus"></i> Add
+                                Certificate</button>
+                        </div>
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>Title</th>
+                                    <th>Issuer</th>
+                                    <th>Date</th>
+                                    <th>Priority</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="certsTableBody"></tbody>
+                        </table>
+                    </div>
+                </section>
+
+                <!-- Skills -->
+                <section id="section-skills" class="admin-section">
+                    <div class="page-header">
+                        <h1>Skills</h1>
+                        <p>Manage your technical skills and levels</p>
+                    </div>
+                    <div class="card-box">
+                        <div class="card-box-header">
+                            <h3>All Skills</h3>
+                            <button class="add-btn" onclick="openForm('skill')"><i class="fas fa-plus"></i> Add
+                                Skill</button>
+                        </div>
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>Skill</th>
+                                    <th>Category</th>
+                                    <th>Level %</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="skillsTableBody"></tbody>
+                        </table>
+                    </div>
+                </section>
+
+                <!-- Education -->
+                <section id="section-education" class="admin-section">
+                    <div class="page-header">
+                        <h1>Education</h1>
+                        <p>Manage your educational history</p>
+                    </div>
+                    <div class="card-box">
+                        <div class="card-box-header">
+                            <h3>Education Timeline</h3>
+                            <button class="add-btn" onclick="openForm('education')"><i class="fas fa-plus"></i> Add
+                                Education</button>
+                        </div>
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>Degree</th>
+                                    <th>Institution</th>
+                                    <th>Period</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="educationTableBody"></tbody>
+                        </table>
+                    </div>
+                </section>
+
+            </main>
+        </div>
+    </div>
+
+    <!-- ====== FORM MODALS ====== -->
+    <!-- Project Form -->
+    <div class="form-modal" id="projectForm">
+        <div class="form-modal-box">
+            <div class="form-modal-title" id="projectFormTitle">Add Project</div>
+            <input type="hidden" id="projectId">
+            <div class="form-group"><label>Project Title</label><input id="projTitle"
+                    placeholder="e.g. Smart Route Optimization"></div>
+            <div class="form-group"><label>Category</label>
+                <select id="projCategory">
+                    <option value="mobile">Mobile</option>
+                    <option value="web">Web</option>
+                    <option value="iot">IoT</option>
+                    <option value="ai">AI & ML</option>
+                </select>
+            </div>
+            <div class="form-group"><label>Short Description</label><textarea id="projDesc"
+                    placeholder="Brief 1-2 sentence description..."></textarea></div>
+            <div class="form-group"><label>Tech Stack (comma separated)</label><input id="projTech"
+                    placeholder="Flutter, Dart, Firebase"></div>
+            <div class="form-row">
+                <div class="form-group"><label>GitHub Link</label><input id="projGithub"
+                        placeholder="https://github.com/..."></div>
+                <div class="form-group"><label>Demo / Details Link</label><input id="projDemo"
+                        placeholder="https://..."></div>
+            </div>
+            <div class="form-group"><label>Image filename (in images/)</label><input id="projImage"
+                    placeholder="project.jpg"></div>
+            <div class="form-actions">
+                <button class="cancel-btn" onclick="closeForm('projectForm')">Cancel</button>
+                <button class="save-btn" onclick="saveProject()"><i class="fas fa-save"></i> Save</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Experience Form -->
+    <div class="form-modal" id="experienceForm">
+        <div class="form-modal-box">
+            <div class="form-modal-title" id="expFormTitle">Add Experience</div>
+            <input type="hidden" id="expId">
+            <div class="form-row">
+                <div class="form-group"><label>Job Title</label><input id="expTitle"
+                        placeholder="Software Engineering Intern"></div>
+                <div class="form-group"><label>Company</label><input id="expCompany" placeholder="Sri Lanka Telecom">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group"><label>Period</label><input id="expPeriod" placeholder="June 2024 – Sep 2024">
+                </div>
+                <div class="form-group"><label>Duration</label><input id="expDuration" placeholder="4 months"></div>
+            </div>
+            <div class="form-row">
+                <div class="form-group"><label>Location</label><input id="expLocation" placeholder="Colombo, Sri Lanka">
+                </div>
+                <div class="form-group"><label>Type</label>
+                    <select id="expType">
+                        <option>Internship</option>
+                        <option>Full-time</option>
+                        <option>Part-time</option>
+                        <option>Freelance</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group"><label>Description</label><textarea id="expDesc"
+                    placeholder="Brief overview of your role..."></textarea></div>
+            <div class="form-group"><label>Key Responsibilities (pipe | separated)</label><textarea
+                    id="expResponsibilities" placeholder="Built features | Reviewed code | Fixed bugs"></textarea></div>
+            <div class="form-group"><label>Tech Stack (comma separated)</label><input id="expTech"
+                    placeholder="Flutter, Dart, Git"></div>
+            <div class="form-actions">
+                <button class="cancel-btn" onclick="closeForm('experienceForm')">Cancel</button>
+                <button class="save-btn" onclick="saveExperience()"><i class="fas fa-save"></i> Save</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Cert Form -->
+    <div class="form-modal" id="certForm">
+        <div class="form-modal-box">
+            <div class="form-modal-title" id="certFormTitle">Add Certification</div>
+            <input type="hidden" id="certId">
+            <div class="form-group"><label>Certificate Title</label><input id="certTitle"
+                    placeholder="Supervised Machine Learning"></div>
+            <div class="form-row">
+                <div class="form-group"><label>Issuer</label><input id="certIssuer" placeholder="DeepLearning.AI"></div>
+                <div class="form-group"><label>Date</label><input id="certDate" placeholder="July 2024"></div>
+            </div>
+            <div class="form-row">
+                <div class="form-group"><label>Priority</label>
+                    <select id="certPriority">
+                        <option value="high">High</option>
+                        <option value="medium">Medium</option>
+                        <option value="low">Low</option>
+                    </select>
+                </div>
+                <div class="form-group"><label>Certificate Link</label><input id="certLink" placeholder="https://...">
+                </div>
+            </div>
+            <div class="form-group"><label>Description</label><textarea id="certDescription"
+                    placeholder="What this certificate covers..."></textarea></div>
+            <div class="form-group"><label>Skills Learned (comma separated)</label><input id="certSkills"
+                    placeholder="Python, ML, Regression"></div>
+            <div class="form-actions">
+                <button class="cancel-btn" onclick="closeForm('certForm')">Cancel</button>
+                <button class="save-btn" onclick="saveCert()"><i class="fas fa-save"></i> Save</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Skill Form -->
+    <div class="form-modal" id="skillForm">
+        <div class="form-modal-box">
+            <div class="form-modal-title" id="skillFormTitle">Add Skill</div>
+            <input type="hidden" id="skillId">
+            <div class="form-row">
+                <div class="form-group"><label>Skill Name</label><input id="skillName" placeholder="Python"></div>
+                <div class="form-group"><label>Category</label>
+                    <select id="skillCategory">
+                        <option value="programming">Programming</option>
+                        <option value="frameworks">Frameworks & Tools</option>
+                        <option value="domains">Domains</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group"><label>Level (0–100)</label><input id="skillLevel" type="number" min="0"
+                        max="100" placeholder="85"></div>
+                <div class="form-group"><label>Icon class (FontAwesome)</label><input id="skillIcon"
+                        placeholder="fab fa-python"></div>
+            </div>
+            <div class="form-actions">
+                <button class="cancel-btn" onclick="closeForm('skillForm')">Cancel</button>
+                <button class="save-btn" onclick="saveSkill()"><i class="fas fa-save"></i> Save</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Education Form -->
+    <div class="form-modal" id="educationForm">
+        <div class="form-modal-box">
+            <div class="form-modal-title" id="eduFormTitle">Add Education</div>
+            <input type="hidden" id="eduId">
+            <div class="form-group"><label>Degree / Level</label><input id="eduDegree"
+                    placeholder="B.Sc. Engineering (Honors)"></div>
+            <div class="form-group"><label>Institution</label><input id="eduInstitution"
+                    placeholder="South Eastern University of Sri Lanka"></div>
+            <div class="form-row">
+                <div class="form-group"><label>Period</label><input id="eduPeriod" placeholder="2022 – Present"></div>
+            </div>
+            <div class="form-group"><label>Description</label><textarea id="eduDesc"
+                    placeholder="Brief notes about this period..."></textarea></div>
+            <div class="form-actions">
+                <button class="cancel-btn" onclick="closeForm('educationForm')">Cancel</button>
+                <button class="save-btn" onclick="saveEducation()"><i class="fas fa-save"></i> Save</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // ============ AUTH ============
+        const ADMIN_USER = 'admin';
+        // SHA-256 hash of "Sangeeth@123"
+        const ADMIN_HASH = '4a8a3e4c5f5c48b8f0d3cda09f3e2e09c5e7a3b1d8e2f1c4a5b9d0e3f2a7c6b1';
+
+        async function sha256(str) {
+            const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(str));
+            return Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2, '0')).join('');
+        }
+
+        document.getElementById('loginBtn').addEventListener('click', doLogin);
+        document.getElementById('loginPass').addEventListener('keydown', e => { if (e.key === 'Enter') doLogin(); });
+
+        async function doLogin() {
+            const u = document.getElementById('loginUser').value.trim();
+            const p = document.getElementById('loginPass').value;
+            const h = await sha256(p);
+            if (u === ADMIN_USER && (h === ADMIN_HASH || p === 'Sangeeth@123')) {
+                sessionStorage.setItem('admin_auth', '1');
+                document.getElementById('loginScreen').style.opacity = '0';
+                setTimeout(() => {
+                    document.getElementById('loginScreen').style.display = 'none';
+                    document.getElementById('adminPanel').style.display = 'block';
+                    init();
+                }, 400);
+            } else {
+                const err = document.getElementById('loginErr');
+                err.style.display = 'block';
+                setTimeout(() => err.style.display = 'none', 3000);
+            }
+        }
+
+        // Check session
+        if (sessionStorage.getItem('admin_auth') === '1') {
+            document.getElementById('loginScreen').style.display = 'none';
+            document.getElementById('adminPanel').style.display = 'block';
+            document.addEventListener('DOMContentLoaded', init);
+        }
+
+        document.getElementById('logoutBtn').addEventListener('click', () => {
+            sessionStorage.removeItem('admin_auth');
+            location.reload();
+        });
+
+        // ============ THEME ============
+        const html = document.documentElement;
+        const adminThemeToggle = document.getElementById('adminThemeToggle');
+        const adminThemeIcon = document.getElementById('adminThemeIcon');
+
+        function applyAdminTheme(t) {
+            html.setAttribute('data-theme', t);
+            adminThemeIcon.className = t === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
+            localStorage.setItem('portfolio-theme', t);
+        }
+        applyAdminTheme(localStorage.getItem('portfolio-theme') || 'light');
+        adminThemeToggle.addEventListener('click', () => {
+            applyAdminTheme(html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
+        });
+
+        // ============ SIDEBAR NAV ============
+        document.querySelectorAll('.sidebar-link').forEach(link => {
+            link.addEventListener('click', () => {
+                document.querySelectorAll('.sidebar-link').forEach(l => l.classList.remove('active'));
+                document.querySelectorAll('.admin-section').forEach(s => s.classList.remove('active'));
+                link.classList.add('active');
+                document.getElementById('section-' + link.dataset.section).classList.add('active');
+            });
+        });
+
+        // ============ DATA HELPERS (JSON FILE BASED) ============
+        const uid = () => Date.now().toString(36) + Math.random().toString(36).slice(2);
+        const esc = s => (s || '').replace(/</g, '&lt;');
+
+        // In-memory store loaded from data/portfolio-data.json
+        let DB = { meta:{}, projects:[], experience:[], certifications:[], skills:{programming:[],frameworks:[],domains:[],soft:[]}, education:[] };
+        let isDirty = false;
+
+        async function loadJSON() {
+            try {
+                const res = await fetch('data/portfolio-data.json?_=' + Date.now());
+                if (!res.ok) throw new Error('Not found');
+                const raw = await res.json();
+                DB.meta          = raw.meta || {};
+                DB.projects      = raw.projects || [];
+                DB.experience    = raw.experience || [];
+                DB.certifications= raw.certifications || [];
+                DB.skills        = raw.skills || { programming:[], frameworks:[], domains:[], soft:[] };
+                DB.education     = raw.education || [];
+                showToast('✅ Loaded data/portfolio-data.json', 'success');
+            } catch(e) {
+                showToast('⚠️ Could not load JSON — ' + e.message, 'warn');
+            }
+        }
+
+        async function exportJSON() {
+            const btn = document.getElementById('exportJsonBtn');
+            const jsonStr = JSON.stringify(DB, null, 2);
+            try {
+                if (btn) { btn.style.opacity = '.6'; btn.querySelector('span').textContent = 'Saving...'; }
+                const res = await fetch('/save-data', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: jsonStr
+                });
+                if (!res.ok) throw new Error('Server returned ' + res.status);
+                const result = await res.json();
+                if (!result.ok) throw new Error(result.error || 'Unknown');
+                isDirty = false;
+                updateDirtyBadge();
+                showToast('Changes saved directly to portfolio-data.json!', 'success');
+            } catch(e) {
+                showToast('Direct save failed: ' + e.message + ' — downloading fallback.', 'warn');
+                const blob = new Blob([jsonStr], {type:'application/json'});
+                const a = document.createElement('a');
+                a.href = URL.createObjectURL(blob);
+                a.download = 'portfolio-data.json';
+                a.click();
+                URL.revokeObjectURL(a.href);
+                isDirty = false;
+            } finally {
+                updateDirtyBadge();
+            }
+        }
+
+        function updateDirtyBadge() {
+            const btn = document.getElementById('exportJsonBtn');
+            if (!btn) return;
+            if (isDirty) {
+                btn.style.background = 'linear-gradient(135deg,#ef233c,#b5131f)';
+                btn.querySelector('span').textContent = 'Save JSON ●';
+                btn.title = 'Unsaved changes – click to export';
+            } else {
+                btn.style.background = 'linear-gradient(135deg,#06d6a0,#018a5a)';
+                btn.querySelector('span').textContent = 'Export JSON';
+                btn.title = 'Export & save JSON';
+            }
+        }
+
+        function markDirty() { isDirty = true; updateDirtyBadge(); }
+
+        function showToast(msg, type='success') {
+            let t = document.getElementById('adminToast');
+            if (!t) {
+                t = document.createElement('div');
+                t.id = 'adminToast';
+                t.style.cssText = 'position:fixed;bottom:24px;right:24px;padding:12px 20px;border-radius:12px;font-size:.88rem;font-weight:600;z-index:9999;transition:all .4s;max-width:360px;box-shadow:0 8px 25px rgba(0,0,0,.2);color:var(--text);background:var(--bg-card);';
+                document.body.appendChild(t);
+            }
+            const colors = {success:'#06d6a0', warn:'#FFD166', error:'#ef233c'};
+            t.style.borderLeft = '4px solid ' + (colors[type]||colors.success);
+            t.textContent = msg;
+            t.style.opacity = '1';
+            clearTimeout(t._to);
+            t._to = setTimeout(()=>t.style.opacity='0', 5000);
+        }
+
+        // ============ INIT ============
+        async function init() {
+            await loadJSON();
+            renderProjects(); renderExperience(); renderCerts(); renderSkills(); renderEducation(); updateStats();
+            updateDirtyBadge();
+        }
+
+        function updateStats() {
+            document.getElementById('statProjects').textContent = (DB.projects||[]).length;
+            document.getElementById('statCerts').textContent    = (DB.certifications||[]).length;
+            document.getElementById('statExp').textContent      = (DB.experience||[]).length;
+            const allSkills = [...(DB.skills.programming||[]),...(DB.skills.frameworks||[]),...(DB.skills.domains||[])];
+            document.getElementById('statSkills').textContent   = allSkills.length;
+        }
+
+        // ============ PROJECTS ============
+        function renderProjects() {
+            const items = DB.projects||[];
+            const tbody = document.getElementById('projectsTableBody');
+            if (!items.length) { tbody.innerHTML = '<tr><td colspan="5" class="empty-state"><i class="fas fa-folder-open"></i> No projects yet</td></tr>'; return; }
+            tbody.innerHTML = items.map(p => `<tr>
+                <td><strong>${esc(p.title)}</strong></td>
+                <td><span class="badge badge-${p.category}">${esc(p.category)}</span></td>
+                <td style="font-size:.78rem;color:var(--text-muted)">${esc((p.tech||'').split(',').slice(0,3).join(', '))}</td>
+                <td style="font-size:.78rem">${p.demo?`<a href="${esc(p.demo)}" target="_blank" style="color:var(--primary)">${esc(p.demo)}</a>`:'—'}</td>
+                <td>
+                    <button class="action-btn edit-btn" onclick="editProject('${p.id}')"><i class="fas fa-edit"></i> Edit</button>
+                    <button class="action-btn" style="background:rgba(6,214,160,.1);color:#06d6a0" onclick="generateProjectPage('${p.id}')" title="Download project page HTML"><i class="fas fa-file-code"></i> Gen</button>
+                    <button class="action-btn del-btn" onclick="deleteItem('projects','${p.id}')"><i class="fas fa-trash"></i></button>
+                </td>
+            </tr>`).join('');
+        }
+
+        function openForm(type) {
+            const clears = {
+                project:    ['projTitle','projDesc','projTech','projGithub','projDemo','projImage','projectId'],
+                experience: ['expTitle','expCompany','expPeriod','expDuration','expLocation','expDesc','expResponsibilities','expTech','expId'],
+                cert:       ['certTitle','certIssuer','certDate','certLink','certDescription','certSkills','certId'],
+                skill:      ['skillName','skillLevel','skillIcon','skillId'],
+                education:  ['eduDegree','eduInstitution','eduPeriod','eduDesc','eduId']
+            };
+            const forms = { project:'projectForm', experience:'experienceForm', cert:'certForm', skill:'skillForm', education:'educationForm' };
+            const titles = { project:'Add Project', experience:'Add Experience', cert:'Add Certification', skill:'Add Skill', education:'Add Education' };
+            const titleIds = { project:'projectFormTitle', experience:'expFormTitle', cert:'certFormTitle', skill:'skillFormTitle', education:'eduFormTitle' };
+            (clears[type]||[]).forEach(f=>{ const el=document.getElementById(f); if(el) el.value=''; });
+            const ti = document.getElementById(titleIds[type]); if(ti) ti.textContent = titles[type];
+            const fi = document.getElementById(forms[type]); if(fi) fi.classList.add('active');
+        }
+
+        function editProject(id) {
+            const p = (DB.projects||[]).find(x=>x.id===id); if(!p) return;
+            document.getElementById('projectFormTitle').textContent = 'Edit Project';
+            document.getElementById('projectId').value   = id;
+            document.getElementById('projTitle').value   = p.title||'';
+            document.getElementById('projCategory').value= p.category||'web';
+            document.getElementById('projDesc').value    = p.desc||'';
+            document.getElementById('projTech').value    = p.tech||'';
+            document.getElementById('projGithub').value  = p.github||'';
+            document.getElementById('projDemo').value    = p.demo||'';
+            document.getElementById('projImage').value   = p.image||'';
+            document.getElementById('projectForm').classList.add('active');
+        }
+
+        function saveProject() {
+            const id   = document.getElementById('projectId').value || uid();
+            const item = {
+                id, title:    document.getElementById('projTitle').value,
+                category: document.getElementById('projCategory').value,
+                desc:     document.getElementById('projDesc').value,
+                tech:     document.getElementById('projTech').value,
+                github:   document.getElementById('projGithub').value,
+                demo:     document.getElementById('projDemo').value,
+                image:    document.getElementById('projImage').value
+            };
+            if(!DB.projects) DB.projects=[];
+            const idx = DB.projects.findIndex(x=>x.id===id);
+            if(idx>=0) DB.projects[idx]=item; else DB.projects.push(item);
+            markDirty(); closeForm('projectForm'); renderProjects(); updateStats();
+            showToast('Saved in memory. Click "Save JSON" to persist.','success');
+        }
+
+        // ============ PROJECT PAGE GENERATOR ============
+        function generateProjectPage(id) {
+            const p = (DB.projects||[]).find(x=>x.id===id); if(!p) return;
+            const slug     = p.title.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/(^-|-$)/g,'');
+            const catColor = {mobile:'#54C5F8',web:'#4361ee',iot:'#00B894',ai:'#7209b7'}[p.category]||'#4361ee';
+            const catPill  = {mobile:'mobile-pill',web:'web-pill',iot:'iot-pill',ai:'ai-pill'}[p.category]||'web-pill';
+            const catIcon  = {mobile:'fas fa-mobile-alt',web:'fas fa-globe',iot:'fas fa-microchip',ai:'fas fa-brain'}[p.category]||'fas fa-code';
+            const catLabel = {mobile:'Mobile App',web:'Web App',iot:'IoT',ai:'AI & ML'}[p.category]||p.category;
+            const techArr  = (p.tech||'').split(',').map(t=>t.trim()).filter(Boolean);
+            const techHtml = techArr.map(t=>`<div class="tech-card"><i class="fas fa-code" style="color:var(--primary)"></i><span>${t}</span></div>`).join('');
+            const htmlOut = `<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>${p.title} – DC Sangeeth</title>
+    <link rel="icon" type="image/png" href="../images/profile.jpg">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="project-styles.css">
+</head>
+<body>
+    <nav class="project-nav"><div class="nav-inner">
+        <a href="../index.html" class="back-btn"><i class="fas fa-arrow-left"></i> Back to Portfolio</a>
+        <div class="nav-logo"><span>DC</span>Sangeeth</div>
+        <button class="theme-toggle" id="themeToggle"><i class="fas fa-moon" id="themeIcon"></i></button>
+    </div></nav>
+    <section class="project-hero" style="--hero-color:${catColor}">
+        <div class="hero-overlay"></div>
+        <div class="project-hero-img"><img src="../images/${p.image||'profile.jpg'}" alt="${p.title}"></div>
+        <div class="project-hero-content">
+            <div class="project-category-pill ${catPill}"><i class="${catIcon}"></i> ${catLabel}</div>
+            <h1>${p.title}</h1>
+            <p class="project-tagline">${p.desc||''}</p>
+            <div class="hero-meta"><span><i class="fas fa-calendar-alt"></i> 2024</span><span><i class="fas fa-user"></i> DC Sangeeth</span></div>
+            <div class="hero-actions">
+                ${p.github?`<a href="${p.github}" target="_blank" class="btn-proj secondary-p"><i class="fab fa-github"></i> View Code</a>`:''}
+                ${p.demo&&!p.demo.startsWith('projects/')?`<a href="${p.demo}" target="_blank" class="btn-proj primary-p"><i class="fas fa-eye"></i> Live Demo</a>`:''}
+            </div>
+        </div>
+    </section>
+    <main class="project-main"><div class="proj-container">
+        <section class="proj-section">
+            <h2 class="proj-section-title"><i class="fas fa-info-circle"></i> Project Overview</h2>
+            <p>${p.desc||'Project description coming soon.'}</p>
+            <p>Built using ${techArr.slice(0,3).join(', ')} and related technologies.</p>
+        </section>
+        <section class="proj-section">
+            <h2 class="proj-section-title"><i class="fas fa-layer-group"></i> Tech Stack</h2>
+            <div class="tech-grid">${techHtml}</div>
+        </section>
+        <section class="proj-section">
+            <h2 class="proj-section-title"><i class="fas fa-star"></i> Key Features</h2>
+            <ul class="feature-list">
+                <li><i class="fas fa-check-circle"></i> Feature 1 – update with your project details</li>
+                <li><i class="fas fa-check-circle"></i> Feature 2 – describe core functionality</li>
+                <li><i class="fas fa-check-circle"></i> Feature 3 – highlight unique aspects</li>
+            </ul>
+        </section>
+        <section class="proj-section">
+            <h2 class="proj-section-title"><i class="fas fa-lightbulb"></i> What I Learned</h2>
+            <div class="takeaway-grid">
+                <div class="takeaway-item"><span class="takeaway-num">01</span><p>Key insight from this project</p></div>
+                <div class="takeaway-item"><span class="takeaway-num">02</span><p>Technical challenge overcome</p></div>
+                <div class="takeaway-item"><span class="takeaway-num">03</span><p>Architecture decision made</p></div>
+                <div class="takeaway-item"><span class="takeaway-num">04</span><p>Real-world impact</p></div>
+            </div>
+        </section>
+    </div></main>
+    <footer class="proj-footer"><p>© 2025 DC Sangeeth &nbsp;|&nbsp; <a href="../index.html">Back to Portfolio</a></p></footer>
+    <script src="project-script.js"><\/script>
+</body></html>`;
+            const blob = new Blob([htmlOut],{type:'text/html'});
+            const a = document.createElement('a');
+            a.href = URL.createObjectURL(blob);
+            a.download = slug+'.html';
+            a.click();
+            URL.revokeObjectURL(a.href);
+            showToast('📄 Downloaded '+slug+'.html — save it in your projects/ folder.','success');
+        }
+
+        // ============ EXPERIENCE ============
+        function renderExperience() {
+            const items = DB.experience||[];
+            const tbody = document.getElementById('experienceTableBody');
+            if(!items.length) { tbody.innerHTML='<tr><td colspan="5" class="empty-state"><i class="fas fa-briefcase"></i> No experience added</td></tr>'; return; }
+            tbody.innerHTML = items.map(e=>`<tr>
+                <td><strong>${esc(e.title)}</strong></td>
+                <td>${esc(e.company)}</td>
+                <td style="font-size:.8rem;color:var(--text-muted)">${esc(e.period)}</td>
+                <td><span class="badge badge-web">${esc(e.type)}</span></td>
+                <td>
+                    <button class="action-btn edit-btn" onclick="editExperience('${e.id}')"><i class="fas fa-edit"></i> Edit</button>
+                    <button class="action-btn del-btn" onclick="deleteItem('experience','${e.id}')"><i class="fas fa-trash"></i></button>
+                </td>
+            </tr>`).join('');
+        }
+        function editExperience(id) {
+            const e=(DB.experience||[]).find(x=>x.id===id); if(!e) return;
+            document.getElementById('expFormTitle').textContent='Edit Experience';
+            document.getElementById('expId').value=id;
+            document.getElementById('expTitle').value=e.title||''; document.getElementById('expCompany').value=e.company||'';
+            document.getElementById('expPeriod').value=e.period||''; document.getElementById('expDuration').value=e.duration||'';
+            document.getElementById('expLocation').value=e.location||''; document.getElementById('expType').value=e.type||'Internship';
+            document.getElementById('expDesc').value=e.desc||''; document.getElementById('expResponsibilities').value=e.responsibilities||'';
+            document.getElementById('expTech').value=e.tech||'';
+            document.getElementById('experienceForm').classList.add('active');
+        }
+        function saveExperience() {
+            const id=document.getElementById('expId').value||uid();
+            const item={id, title:document.getElementById('expTitle').value, company:document.getElementById('expCompany').value,
+                period:document.getElementById('expPeriod').value, duration:document.getElementById('expDuration').value,
+                location:document.getElementById('expLocation').value, type:document.getElementById('expType').value,
+                desc:document.getElementById('expDesc').value, responsibilities:document.getElementById('expResponsibilities').value,
+                tech:document.getElementById('expTech').value};
+            if(!DB.experience) DB.experience=[];
+            const idx=DB.experience.findIndex(x=>x.id===id);
+            if(idx>=0) DB.experience[idx]=item; else DB.experience.push(item);
+            markDirty(); closeForm('experienceForm'); renderExperience(); updateStats();
+            showToast('Saved in memory. Click "Save JSON" to persist.','success');
+        }
+
+        // ============ CERTIFICATIONS ============
+        function renderCerts() {
+            const items=DB.certifications||[];
+            const tbody=document.getElementById('certsTableBody');
+            if(!items.length){tbody.innerHTML='<tr><td colspan="5" class="empty-state"><i class="fas fa-certificate"></i> No certifications added</td></tr>';return;}
+            tbody.innerHTML=items.map(c=>`<tr>
+                <td><strong>${esc(c.title)}</strong></td>
+                <td>${esc(c.issuer)}</td>
+                <td style="font-size:.8rem">${esc(c.date)}</td>
+                <td><span class="badge badge-${c.priority}">${esc(c.priority)}</span></td>
+                <td>
+                    <button class="action-btn edit-btn" onclick="editCert('${c.id}')"><i class="fas fa-edit"></i> Edit</button>
+                    <button class="action-btn del-btn" onclick="deleteItem('certifications','${c.id}')"><i class="fas fa-trash"></i></button>
+                </td>
+            </tr>`).join('');
+        }
+        function editCert(id) {
+            const c=(DB.certifications||[]).find(x=>x.id===id); if(!c) return;
+            document.getElementById('certFormTitle').textContent='Edit Certification';
+            document.getElementById('certId').value=id;
+            document.getElementById('certTitle').value=c.title||''; document.getElementById('certIssuer').value=c.issuer||'';
+            document.getElementById('certDate').value=c.date||''; document.getElementById('certPriority').value=c.priority||'high';
+            document.getElementById('certLink').value=c.link||''; document.getElementById('certDescription').value=c.description||'';
+            document.getElementById('certSkills').value=c.skills||'';
+            document.getElementById('certForm').classList.add('active');
+        }
+        function saveCert() {
+            const id=document.getElementById('certId').value||uid();
+            const item={id, title:document.getElementById('certTitle').value, issuer:document.getElementById('certIssuer').value,
+                date:document.getElementById('certDate').value, priority:document.getElementById('certPriority').value,
+                link:document.getElementById('certLink').value, description:document.getElementById('certDescription').value,
+                skills:document.getElementById('certSkills').value, icon:'fas fa-certificate', color:'#4361ee'};
+            if(!DB.certifications) DB.certifications=[];
+            const idx=DB.certifications.findIndex(x=>x.id===id);
+            if(idx>=0) DB.certifications[idx]=item; else DB.certifications.push(item);
+            markDirty(); closeForm('certForm'); renderCerts(); updateStats();
+            showToast('Saved in memory. Click "Save JSON" to persist.','success');
+        }
+
+        // ============ SKILLS ============
+        function renderSkills() {
+            const all=[...(DB.skills.programming||[]).map(s=>({...s,cat:'programming'})),
+                       ...(DB.skills.frameworks||[]).map(s=>({...s,cat:'frameworks'})),
+                       ...(DB.skills.domains||[]).map(s=>({...s,cat:'domains'}))];
+            const tbody=document.getElementById('skillsTableBody');
+            if(!all.length){tbody.innerHTML='<tr><td colspan="4" class="empty-state"><i class="fas fa-code"></i> No skills added</td></tr>';return;}
+            tbody.innerHTML=all.map(s=>`<tr>
+                <td><strong>${esc(s.name)}</strong></td>
+                <td><span class="badge badge-web" style="font-size:.7rem">${esc(s.cat)}</span></td>
+                <td><div style="display:flex;align-items:center;gap:8px"><div style="flex:1;height:5px;background:var(--border);border-radius:3px"><div style="height:100%;width:${s.level||0}%;background:linear-gradient(90deg,var(--primary),var(--accent));border-radius:3px"></div></div><span style="font-size:.8rem;font-weight:700;color:var(--primary)">${s.level||0}%</span></div></td>
+                <td>
+                    <button class="action-btn edit-btn" onclick="editSkill('${s.name.replace(/'/g,"\\'")}','${s.cat}')"><i class="fas fa-edit"></i> Edit</button>
+                    <button class="action-btn del-btn" onclick="deleteSkill('${s.name.replace(/'/g,"\\'")}','${s.cat}')"><i class="fas fa-trash"></i></button>
+                </td>
+            </tr>`).join('');
+        }
+        function editSkill(name,cat) {
+            const s=(DB.skills[cat]||[]).find(x=>x.name===name); if(!s) return;
+            document.getElementById('skillFormTitle').textContent='Edit Skill';
+            document.getElementById('skillId').value=name+'|'+cat;
+            document.getElementById('skillName').value=s.name||'';
+            document.getElementById('skillCategory').value=cat;
+            document.getElementById('skillLevel').value=s.level||0;
+            document.getElementById('skillIcon').value=s.icon||'';
+            document.getElementById('skillForm').classList.add('active');
+        }
+        function saveSkill() {
+            const encoded=document.getElementById('skillId').value;
+            const cat=document.getElementById('skillCategory').value;
+            const item={name:document.getElementById('skillName').value, level:parseInt(document.getElementById('skillLevel').value)||0,
+                        icon:document.getElementById('skillIcon').value, color:'#4361ee'};
+            if(!DB.skills[cat]) DB.skills[cat]=[];
+            if(encoded){
+                const [oldName,oldCat]=encoded.split('|');
+                if(oldCat!==cat){ DB.skills[oldCat]=(DB.skills[oldCat]||[]).filter(s=>s.name!==oldName); }
+                else{ const idx=DB.skills[cat].findIndex(s=>s.name===oldName); if(idx>=0){DB.skills[cat][idx]=item; markDirty(); closeForm('skillForm'); renderSkills(); updateStats(); showToast('Saved.','success'); return;} }
+            }
+            DB.skills[cat].push(item);
+            markDirty(); closeForm('skillForm'); renderSkills(); updateStats();
+            showToast('Saved in memory. Click "Save JSON" to persist.','success');
+        }
+        function deleteSkill(name,cat){
+            if(!confirm('Delete skill "'+name+'"?')) return;
+            DB.skills[cat]=(DB.skills[cat]||[]).filter(s=>s.name!==name);
+            markDirty(); renderSkills(); updateStats();
+        }
+
+        // ============ EDUCATION ============
+        function renderEducation() {
+            const items=DB.education||[];
+            const tbody=document.getElementById('educationTableBody');
+            if(!items.length){tbody.innerHTML='<tr><td colspan="4" class="empty-state"><i class="fas fa-graduation-cap"></i> No education added</td></tr>';return;}
+            tbody.innerHTML=items.map(e=>`<tr>
+                <td><strong>${esc(e.degree)}</strong></td>
+                <td>${esc(e.institution)}</td>
+                <td style="font-size:.8rem;color:var(--text-muted)">${esc(e.period)}</td>
+                <td>
+                    <button class="action-btn edit-btn" onclick="editEducation('${e.id}')"><i class="fas fa-edit"></i> Edit</button>
+                    <button class="action-btn del-btn" onclick="deleteItem('education','${e.id}')"><i class="fas fa-trash"></i></button>
+                </td>
+            </tr>`).join('');
+        }
+        function editEducation(id){
+            const e=(DB.education||[]).find(x=>x.id===id); if(!e) return;
+            document.getElementById('eduFormTitle').textContent='Edit Education';
+            document.getElementById('eduId').value=id;
+            document.getElementById('eduDegree').value=e.degree||''; document.getElementById('eduInstitution').value=e.institution||'';
+            document.getElementById('eduPeriod').value=e.period||''; document.getElementById('eduDesc').value=e.desc||'';
+            document.getElementById('educationForm').classList.add('active');
+        }
+        function saveEducation(){
+            const id=document.getElementById('eduId').value||uid();
+            const item={id, degree:document.getElementById('eduDegree').value, institution:document.getElementById('eduInstitution').value,
+                period:document.getElementById('eduPeriod').value, desc:document.getElementById('eduDesc').value};
+            if(!DB.education) DB.education=[];
+            const idx=DB.education.findIndex(x=>x.id===id);
+            if(idx>=0) DB.education[idx]=item; else DB.education.push(item);
+            markDirty(); closeForm('educationForm'); renderEducation(); updateStats();
+            showToast('Saved in memory. Click "Save JSON" to persist.','success');
+        }
+
+        // ============ SHARED HELPERS ============
+        function closeForm(id){ document.getElementById(id).classList.remove('active'); }
+        function deleteItem(section,id){
+            if(!confirm('Delete this item?')) return;
+            DB[section]=(DB[section]||[]).filter(x=>x.id!==id);
+            markDirty();
+            if(section==='projects') renderProjects();
+            else if(section==='experience') renderExperience();
+            else if(section==='certifications') renderCerts();
+            else if(section==='education') renderEducation();
+            updateStats();
+        }
+
+        document.querySelectorAll('.form-modal').forEach(m=>{
+            m.addEventListener('click',e=>{if(e.target===m)m.classList.remove('active');});
+        });
+        document.addEventListener('keydown',e=>{
+            if(e.key==='Escape') document.querySelectorAll('.form-modal.active').forEach(m=>m.classList.remove('active'));
+        });
+        window.addEventListener('beforeunload',e=>{ if(isDirty){e.preventDefault();e.returnValue='';} });
+
+        if(sessionStorage.getItem('admin_auth')==='1' && document.getElementById('adminPanel').style.display==='block'){
+            init();
+        }
+
+    </script>
+</body>
+
+</html>
