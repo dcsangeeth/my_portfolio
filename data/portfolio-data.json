@@ -83,7 +83,8 @@
       "type": "Internship",
       "desc": "Contributed to full-stack development of PowerProx, an internal asset management system for SLT Digital Platform division. My role involved implementing new features, enhancing the UI, ensuring seamless API integrations, and participating in agile development cycles and team code reviews to improve code quality.",
       "responsibilities": "Implemented new features using Flutter and Dart for the PowerProx asset management app|Integrated REST APIs for real-time asset tracking and data sync|Participated in agile sprints, daily stand-ups, and code review sessions|Enhanced UI/UX for inspection and asset management workflows|Contributed to end-to-end testing and bug fixing",
-      "tech": "Flutter, Dart, REST APIs, Git, GitHub, Agile, Jira"
+      "tech": "Flutter, Dart, REST APIs, Git, GitHub, Agile, Jira",
+      "link": "https://www.linkedin.com/posts/dcsangeeth_certificate-internship-achievement-activity-7252585382750367744-_yiw?utm_source=share&utm_medium=member_desktop&rcm=ACoAAE2EY3YBvCf6M6gyJ2CZMnGwAMhvudtv2bA"
     },
     {
       "id": "exp-002",
@@ -92,10 +93,11 @@
       "period": "Aug 2025 - Oct 2025",
       "duration": "3 months",
       "location": "Colombo, Sri Lanka",
-      "type": "Trainee",
+      "type": "Internship",
       "desc": "Trainee at SLTMobitel Digital Lab focused on building and optimizing LLM-based multi-agent workflows, custom RAG systems, and conversational AI.",
       "responsibilities": "- Built, traced, and optimized LLM-based multi-agent workflows[cite: 1].\n- Developed custom RAG systems for intelligent document retrieval and summarization, including an Email Problem Solution RAG Agent[cite: 1].\n- Designed multi-agent ecosystems in LangGraph and integrated n8n workflows, FastAPI, and Flask for backend connectivity[cite: 1].\n- Built intelligent, human-in-the-loop chatbots for customer queries and complaint management[cite: 1].",
-      "tech": "Python, LangChain, LangGraph, LangSmith, Ollama, Google Gemini API, n8n, FastAPI, Flask, LLMs, RAG Systems, Multi-Agent Workflows"
+      "tech": "Python, LangChain, LangGraph, LangSmith, Ollama, Google Gemini API, n8n, FastAPI, Flask, LLMs, RAG Systems, Multi-Agent Workflows",
+      "link": "https://www.linkedin.com/posts/dcsangeeth_im-excited-to-share-that-i-have-successfully-activity-7401205949832728576-nBVw?utm_source=share&utm_medium=member_desktop&rcm=ACoAAE2EY3YBvCf6M6gyJ2CZMnGwAMhvudtv2bA"
     }
   ],
   "certifications": [

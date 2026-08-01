@@ -262,7 +262,7 @@ function renderExperience(experience) {
         <div class="timeline-item clickable" data-aos="fade-right" data-aos-delay="${200 + i * 100}">
             <div class="timeline-dot pulse"></div>
             <div class="timeline-date"><span>${e.period || ''}</span></div>
-            <div class="timeline-content" data-exp='${encodeURIComponent(JSON.stringify(e))}' onclick='openExpModal(JSON.parse(decodeURIComponent(this.getAttribute("data-exp"))))' style="cursor:pointer">
+            <div class="timeline-content" data-exp='${encodeURIComponent(JSON.stringify(e))}' onclick='const eData = JSON.parse(decodeURIComponent(this.getAttribute("data-exp"))); if(eData.link){window.open(eData.link,"_blank")}else{openExpModal(eData)}' style="cursor:pointer">
                 <div class="exp-type-badge">${e.type || 'Work'}</div>
                 <h3>${e.title || ''}</h3>
                 <h4><i class="fas fa-building"></i> ${e.company || ''}</h4>
@@ -270,8 +270,8 @@ function renderExperience(experience) {
                 <div class="tech-stack">
                     ${(e.tech || '').split(',').slice(0, 4).map(t => `<span>${t.trim()}</span>`).join('')}
                 </div>
-                <button class="btn small-btn details-btn" data-exp='${encodeURIComponent(JSON.stringify(e))}' onclick='event.stopPropagation();openExpModal(JSON.parse(decodeURIComponent(this.getAttribute("data-exp"))))'>
-                    <i class="fas fa-expand-alt"></i> View Full Details
+                <button class="btn small-btn details-btn" data-exp='${encodeURIComponent(JSON.stringify(e))}' onclick='event.stopPropagation(); const eData = JSON.parse(decodeURIComponent(this.getAttribute("data-exp"))); if(eData.link){window.open(eData.link,"_blank")}else{openExpModal(eData)}'>
+                    <i class="fas ${e.link ? 'fa-external-link-alt' : 'fa-expand-alt'}"></i> ${e.link ? 'Visit Website' : 'View Full Details'}
                 </button>
             </div>
         </div>`).join('');
