@@ -177,8 +177,17 @@ document.querySelectorAll('.filter-btn').forEach(btn => {
 });
 function filterProjects() {
   document.querySelectorAll('#projectsGrid .project-card').forEach(card => {
-    const show = currentFilter === 'all' || card.dataset.category === currentFilter;
+    const categories = (card.dataset.categories || '').split(',');
+    const show = currentFilter === 'all' || categories.includes(currentFilter);
     card.style.display = show ? '' : 'none';
+    // Highlight matching badge when filtered
+    card.querySelectorAll('.project-category-badge').forEach(badge => {
+      if (currentFilter === 'all') {
+        badge.style.opacity = '1';
+      } else {
+        badge.style.opacity = badge.dataset.cat === currentFilter ? '1' : '0.35';
+      }
+    });
   });
 }
 
@@ -315,14 +324,25 @@ function renderCertifications(certifications) {
   container.innerHTML = rowsHtml;
 }
 
-/* ── PROJECTS ────────────────────────────────────────────────────── */
 function renderProjects(projects) {
   const grid = document.getElementById('projectsGrid');
   if (!grid || !projects?.length) return;
 
   const catLabels = { mobile: 'Mobile', web: 'Web', iot: 'IoT', ai: 'AI & ML' };
-  grid.innerHTML = projects.map((p, i) => `
-        <div class="project-card" data-category="${p.category}" data-aos="fade-up" data-aos-delay="${300 + i * 100}"
+  const catColors = { mobile: '#54C5F8', web: '#e63946', iot: '#00B894', ai: '#7209b7' };
+
+  grid.innerHTML = projects.map((p, i) => {
+    // Normalise category to always be an array
+    const cats = Array.isArray(p.category) ? p.category : [p.category].filter(Boolean);
+    const categoriesStr = cats.join(',');
+
+    // Build badges HTML (one per category)
+    const badgesHtml = cats.map(cat =>
+      `<div class="project-category-badge" data-cat="${cat}" style="background:${catColors[cat] || '#4361ee'}">${catLabels[cat] || cat}</div>`
+    ).join('');
+
+    return `
+        <div class="project-card" data-categories="${categoriesStr}" data-aos="fade-up" data-aos-delay="${300 + i * 100}"
              data-project-page="${p.demo || '#'}">
             <div class="project-img">
                 <img src="images/${p.image || 'profile.jpg'}" alt="${p.title}" onerror="this.src='images/profile.jpg'">
@@ -332,7 +352,7 @@ function renderProjects(projects) {
                         <span>View Details</span>
                     </div>
                 </div>
-                <div class="project-category-badge">${catLabels[p.category] || p.category}</div>
+                <div class="project-badges">${badgesHtml}</div>
             </div>
             <div class="project-info">
                 <h3>${p.title}</h3>
@@ -344,7 +364,8 @@ function renderProjects(projects) {
                     <i class="fas fa-arrow-right"></i> View Project
                 </button>` : ''}
             </div>
-        </div>`).join('');
+        </div>`;
+  }).join('');
 
   // Attach click handlers
   grid.querySelectorAll('.project-card, .view-project-btn').forEach(el => {

@@ -1,4 +1,13 @@
-{
+/* =====================================================================
+   PORTFOLIO DATA – Embedded as a JS variable so the portfolio works
+   by opening index.html directly (file://) with NO server needed.
+
+   HOW TO UPDATE:
+   Edit this file directly. Keep the structure as-is.
+   Also keep portfolio-data.json in sync (used by Admin panel export).
+   ===================================================================== */
+
+const PORTFOLIO_DATA = {
   "meta": {
     "name": "DC Sangeeth",
     "title": "Electrical & Electronic Engineer | ML/AI Enthusiast | Flutter Developer",
@@ -13,9 +22,7 @@
     {
       "id": "proj-001",
       "title": "Power Prox – Asset Management System",
-      "category": [
-        "mobile"
-      ],
+      "category": ["mobile"],
       "desc": "A Flutter/Dart mobile app for real-time tracking of SLT network infrastructure assets (Rectifiers, Generators, Batteries, SPDs, UPS) island-wide.",
       "tech": "Flutter, Dart, REST APIs, Git, Agile",
       "github": "",
@@ -25,10 +32,7 @@
     {
       "id": "proj-002",
       "title": "Elephant Detection Using Seismic Signals",
-      "category": [
-        "iot",
-        "ai"
-      ],
+      "category": ["iot", "ai"],
       "desc": "Developed a ground-based elephant detection system using geophone sensors, instrumentation amplifier-based signal conditioning, and machine learning models to analyze seismic vibrations and enable real-time elephant movement early warning detection.",
       "tech": "Geophone Sensors, Instrumentation Amplifier, Python, Signal Processing, Machine Learning",
       "github": "",
@@ -38,9 +42,7 @@
     {
       "id": "proj-003",
       "title": "Water Level Indicator & Auto Switch System",
-      "category": [
-        "iot"
-      ],
+      "category": ["iot"],
       "desc": "End-to-end IoT solution with NodeMCU ESP8266, Firebase RTDB and Flutter app for real-time monitoring and automated pump control.",
       "tech": "NodeMCU, Dart, Flutter, Firebase RTDB, Arduino IDE",
       "github": "https://github.com/dcsangeeth/water_level_control_system",
@@ -50,9 +52,7 @@
     {
       "id": "proj-004",
       "title": "Smart Route Optimization System",
-      "category": [
-        "web"
-      ],
+      "category": ["web"],
       "desc": "Flask web app using Dijkstra algorithm + Google Maps API to compute optimal multi-stop routes minimising travel time and fuel.",
       "tech": "Python, Flask, Google Maps API, Dijkstra, HTML/CSS/JS",
       "github": "",
@@ -62,9 +62,7 @@
     {
       "id": "proj-005",
       "title": "Hospital Queue Management System",
-      "category": [
-        "web"
-      ],
+      "category": ["web"],
       "desc": "Full-stack system with Flask + FastAPI and MySQL to automate patient intake, intelligent doctor assignment and real-time queue management.",
       "tech": "Python, Flask, FastAPI, MySQL, HTML/CSS/JS",
       "github": "",
@@ -94,7 +92,7 @@
       "location": "Colombo, Sri Lanka",
       "type": "Trainee",
       "desc": "Trainee at SLTMobitel Digital Lab focused on building and optimizing LLM-based multi-agent workflows, custom RAG systems, and conversational AI.",
-      "responsibilities": "- Built, traced, and optimized LLM-based multi-agent workflows[cite: 1].\n- Developed custom RAG systems for intelligent document retrieval and summarization, including an Email Problem Solution RAG Agent[cite: 1].\n- Designed multi-agent ecosystems in LangGraph and integrated n8n workflows, FastAPI, and Flask for backend connectivity[cite: 1].\n- Built intelligent, human-in-the-loop chatbots for customer queries and complaint management[cite: 1].",
+      "responsibilities": "Built, traced, and optimized LLM-based multi-agent workflows|Developed custom RAG systems for intelligent document retrieval and summarization, including an Email Problem Solution RAG Agent|Designed multi-agent ecosystems in LangGraph and integrated n8n workflows, FastAPI, and Flask for backend connectivity|Built intelligent, human-in-the-loop chatbots for customer queries and complaint management",
       "tech": "Python, LangChain, LangGraph, LangSmith, Ollama, Google Gemini API, n8n, FastAPI, Flask, LLMs, RAG Systems, Multi-Agent Workflows"
     }
   ],
@@ -198,150 +196,35 @@
   ],
   "skills": {
     "programming": [
-      {
-        "name": "Python",
-        "level": 85,
-        "icon": "fab fa-python",
-        "color": "#3776AB"
-      },
-      {
-        "name": "Dart / Flutter",
-        "level": 82,
-        "icon": "fas fa-mobile-alt",
-        "color": "#54C5F8"
-      },
-      {
-        "name": "C / C++",
-        "level": 75,
-        "icon": "fas fa-microchip",
-        "color": "#00599C"
-      },
-      {
-        "name": "Java",
-        "level": 70,
-        "icon": "fab fa-java",
-        "color": "#007396"
-      },
-      {
-        "name": "JavaScript",
-        "level": 72,
-        "icon": "fab fa-js",
-        "color": "#F7DF1E"
-      },
-      {
-        "name": "SQL",
-        "level": 75,
-        "icon": "fas fa-database",
-        "color": "#336791"
-      }
+      { "name": "Python",       "level": 85, "icon": "fab fa-python",    "color": "#3776AB" },
+      { "name": "Dart / Flutter","level": 82, "icon": "fas fa-mobile-alt","color": "#54C5F8" },
+      { "name": "C / C++",      "level": 75, "icon": "fas fa-microchip", "color": "#00599C" },
+      { "name": "Java",         "level": 70, "icon": "fab fa-java",      "color": "#007396" },
+      { "name": "JavaScript",   "level": 72, "icon": "fab fa-js",        "color": "#F7DF1E" },
+      { "name": "SQL",          "level": 75, "icon": "fas fa-database",  "color": "#336791" }
     ],
     "frameworks": [
-      {
-        "name": "Flutter",
-        "level": 82,
-        "icon": "fas fa-mobile-alt",
-        "color": "#54C5F8"
-      },
-      {
-        "name": "Flask / FastAPI",
-        "level": 78,
-        "icon": "fas fa-server",
-        "color": "#000000"
-      },
-      {
-        "name": "Firebase",
-        "level": 80,
-        "icon": "fas fa-fire-alt",
-        "color": "#FFA000"
-      },
-      {
-        "name": "Arduino IDE",
-        "level": 82,
-        "icon": "fas fa-robot",
-        "color": "#00979D"
-      },
-      {
-        "name": "Git & GitHub",
-        "level": 85,
-        "icon": "fab fa-git-alt",
-        "color": "#F05032"
-      },
-      {
-        "name": "scikit-learn",
-        "level": 75,
-        "icon": "fas fa-brain",
-        "color": "#F89939"
-      }
+      { "name": "Flutter",        "level": 82, "icon": "fas fa-mobile-alt", "color": "#54C5F8" },
+      { "name": "Flask / FastAPI","level": 78, "icon": "fas fa-server",     "color": "#000000" },
+      { "name": "Firebase",       "level": 80, "icon": "fas fa-fire-alt",   "color": "#FFA000" },
+      { "name": "Arduino IDE",    "level": 82, "icon": "fas fa-robot",      "color": "#00979D" },
+      { "name": "Git & GitHub",   "level": 85, "icon": "fab fa-git-alt",    "color": "#F05032" },
+      { "name": "scikit-learn",   "level": 75, "icon": "fas fa-brain",      "color": "#F89939" }
     ],
     "domains": [
-      {
-        "name": "Machine Learning",
-        "level": 75,
-        "icon": "fas fa-brain",
-        "color": "#7209b7"
-      },
-      {
-        "name": "IoT Systems",
-        "level": 85,
-        "icon": "fas fa-wifi",
-        "color": "#00B894"
-      },
-      {
-        "name": "Electrical Engineering",
-        "level": 88,
-        "icon": "fas fa-bolt",
-        "color": "#e98a00"
-      },
-      {
-        "name": "Power Systems",
-        "level": 82,
-        "icon": "fas fa-plug",
-        "color": "#ef233c"
-      },
-      {
-        "name": "Data Analysis",
-        "level": 72,
-        "icon": "fas fa-chart-bar",
-        "color": "#4361ee"
-      }
+      { "name": "Machine Learning",      "level": 75, "icon": "fas fa-brain",    "color": "#7209b7" },
+      { "name": "IoT Systems",           "level": 85, "icon": "fas fa-wifi",     "color": "#00B894" },
+      { "name": "Electrical Engineering","level": 88, "icon": "fas fa-bolt",     "color": "#e98a00" },
+      { "name": "Power Systems",         "level": 82, "icon": "fas fa-plug",     "color": "#ef233c" },
+      { "name": "Data Analysis",         "level": 72, "icon": "fas fa-chart-bar","color": "#4361ee" }
     ],
     "soft": [
-      {
-        "name": "Problem Solving",
-        "icon": "fas fa-lightbulb",
-        "color": "#FFD166",
-        "desc": "Breaking complex problems into manageable solutions"
-      },
-      {
-        "name": "Team Collaboration",
-        "icon": "fas fa-users",
-        "color": "#4361ee",
-        "desc": "Working effectively in Agile cross-functional teams"
-      },
-      {
-        "name": "Communication",
-        "icon": "fas fa-comments",
-        "color": "#06d6a0",
-        "desc": "Clear technical and non-technical communication"
-      },
-      {
-        "name": "Adaptability",
-        "icon": "fas fa-sync-alt",
-        "color": "#f72585",
-        "desc": "Quick to learn new technologies and frameworks"
-      },
-      {
-        "name": "Time Management",
-        "icon": "fas fa-tasks",
-        "color": "#e9c46a",
-        "desc": "Disciplined with deadlines and effective prioritisation"
-      },
-      {
-        "name": "Project Management",
-        "icon": "fas fa-project-diagram",
-        "color": "#6a4c93",
-        "desc": "Organised planner with experience leading engineering projects"
-      }
+      { "name": "Problem Solving",    "icon": "fas fa-lightbulb",      "color": "#FFD166", "desc": "Breaking complex problems into manageable solutions" },
+      { "name": "Team Collaboration", "icon": "fas fa-users",          "color": "#4361ee", "desc": "Working effectively in Agile cross-functional teams" },
+      { "name": "Communication",      "icon": "fas fa-comments",       "color": "#06d6a0", "desc": "Clear technical and non-technical communication" },
+      { "name": "Adaptability",       "icon": "fas fa-sync-alt",       "color": "#f72585", "desc": "Quick to learn new technologies and frameworks" },
+      { "name": "Time Management",    "icon": "fas fa-tasks",          "color": "#e9c46a", "desc": "Disciplined with deadlines and effective prioritisation" },
+      { "name": "Project Management", "icon": "fas fa-project-diagram","color": "#6a4c93", "desc": "Organised planner with experience leading engineering projects" }
     ]
   },
   "education": [
@@ -369,4 +252,4 @@
       "icon": "fas fa-graduation-cap"
     }
   ]
-}
+};

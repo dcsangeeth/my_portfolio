@@ -1033,11 +1033,18 @@ nav .container {
 }
 .overlay-content i { font-size: 2rem; display: block; margin-bottom: 8px; }
 
-.project-category-badge {
+/* Multiple category badges wrapper */
+.project-badges {
   position: absolute;
   top: 12px;
   right: 12px;
-  background: rgba(67,97,238,0.85);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 5px;
+}
+
+.project-category-badge {
   color: white;
   padding: 4px 12px;
   border-radius: 20px;
@@ -1046,6 +1053,8 @@ nav .container {
   backdrop-filter: blur(5px);
   text-transform: uppercase;
   letter-spacing: 0.5px;
+  transition: opacity 0.3s ease;
+  white-space: nowrap;
 }
 
 .project-info { padding: 20px; }
