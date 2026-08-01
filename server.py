@@ -7,7 +7,7 @@ Portfolio Dev Server
 import http.server, json, os, sys
 from pathlib import Path
 
-ROOT = Path(r"d:\Projects\Portfollio")
+ROOT = Path(r"D:\My Portfolio\my_portfolio")
 DATA_FILE = ROOT / "data" / "portfolio-data.json"
 PORT = 5500
 
@@ -71,7 +71,7 @@ if __name__ == '__main__':
             else:
                 raise
 
-    print(f"🚀 Portfolio server running → http://localhost:{port}")
+    print(f"[SERVER] Portfolio running at http://localhost:{port}")
     if port != PORT:
         print(f"   (Port {PORT} was in use, automatically switched to {port})")
     print(f"   POST /save-data  writes to: {DATA_FILE.name}")
@@ -79,4 +79,4 @@ if __name__ == '__main__':
     try:
         httpd.serve_forever()
     except KeyboardInterrupt:
-        print("\n⛔ Server stopped.")
+        print("\n[STOPPED] Server stopped.")

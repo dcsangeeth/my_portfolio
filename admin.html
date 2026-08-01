@@ -792,12 +792,12 @@
                 <div class="sidebar-link active" data-section="dashboard"><i class="fas fa-th-large"></i> Dashboard
                 </div>
                 <div class="sidebar-label">Sections</div>
-                <div class="sidebar-link" data-section="projects"><i class="fas fa-folder-open"></i> Projects</div>
                 <div class="sidebar-link" data-section="experience"><i class="fas fa-briefcase"></i> Experience</div>
+                <div class="sidebar-link" data-section="projects"><i class="fas fa-folder-open"></i> Projects</div>
                 <div class="sidebar-link" data-section="certifications"><i class="fas fa-certificate"></i>
                     Certifications</div>
-                <div class="sidebar-link" data-section="skills"><i class="fas fa-code"></i> Skills</div>
                 <div class="sidebar-link" data-section="education"><i class="fas fa-graduation-cap"></i> Education</div>
+                <div class="sidebar-link" data-section="skills"><i class="fas fa-code"></i> Skills</div>
             </aside>
 
             <!-- Content -->
@@ -849,15 +849,15 @@
                         </div>
                         <div style="padding:22px;line-height:1.8;color:var(--text-muted);font-size:.9rem">
                             <p><strong style="color:var(--text)">1. Navigate sections</strong> using the sidebar to
-                                manage Projects, Experience, Certifications, Skills, and Education.</p>
+                                manage Experience, Projects, Certifications, Education, and Skills.</p>
                             <p style="margin-top:8px"><strong style="color:var(--text)">2. Add / Edit / Delete</strong>
                                 items using the buttons in each section table.</p>
-                            <p style="margin-top:8px"><strong style="color:var(--text)">3. Data storage:</strong> All
-                                changes are saved in <code
-                                    style="background:var(--bg);padding:1px 6px;border-radius:4px">localStorage</code>.
-                                The portfolio reads this data automatically.</p>
-                            <p style="margin-top:8px"><strong style="color:var(--text)">4. Note:</strong> localStorage
-                                is browser-specific. Export / backup is not yet implemented.</p>
+                            <p style="margin-top:8px"><strong style="color:var(--text)">3. Save changes:</strong> Click
+                                <strong>Export JSON</strong> (top-right) after every edit. If the local server is running,
+                                changes are written directly to <code style="background:var(--bg);padding:1px 6px;border-radius:4px">data/portfolio-data.json</code>.
+                                Otherwise the file is downloaded — replace it manually.</p>
+                            <p style="margin-top:8px"><strong style="color:var(--text)">4. Projects:</strong> Multi-category
+                                tagging is supported (e.g. IoT + AI &amp; ML). Tick all that apply in the project form.</p>
                         </div>
                     </div>
                 </section>
@@ -1007,13 +1007,17 @@
             <input type="hidden" id="projectId">
             <div class="form-group"><label>Project Title</label><input id="projTitle"
                     placeholder="e.g. Smart Route Optimization"></div>
-            <div class="form-group"><label>Category</label>
-                <select id="projCategory">
-                    <option value="mobile">Mobile</option>
-                    <option value="web">Web</option>
-                    <option value="iot">IoT</option>
-                    <option value="ai">AI & ML</option>
-                </select>
+            <div class="form-group"><label>Categories <span style="font-size:.75rem;color:var(--text-muted)">(select all that apply)</span></label>
+                <div style="display:flex;flex-wrap:wrap;gap:10px;padding:10px 0">
+                    <label style="display:flex;align-items:center;gap:6px;font-size:.88rem;cursor:pointer">
+                        <input type="checkbox" id="catMobile" value="mobile"> Mobile</label>
+                    <label style="display:flex;align-items:center;gap:6px;font-size:.88rem;cursor:pointer">
+                        <input type="checkbox" id="catWeb" value="web"> Web</label>
+                    <label style="display:flex;align-items:center;gap:6px;font-size:.88rem;cursor:pointer">
+                        <input type="checkbox" id="catIot" value="iot"> IoT</label>
+                    <label style="display:flex;align-items:center;gap:6px;font-size:.88rem;cursor:pointer">
+                        <input type="checkbox" id="catAi" value="ai"> AI &amp; ML</label>
+                </div>
             </div>
             <div class="form-group"><label>Short Description</label><textarea id="projDesc"
                     placeholder="Brief 1-2 sentence description..."></textarea></div>
@@ -1056,6 +1060,7 @@
                 <div class="form-group"><label>Type</label>
                     <select id="expType">
                         <option>Internship</option>
+                        <option>Trainee</option>
                         <option>Full-time</option>
                         <option>Part-time</option>
                         <option>Freelance</option>
@@ -1334,9 +1339,14 @@
             const items = DB.projects||[];
             const tbody = document.getElementById('projectsTableBody');
             if (!items.length) { tbody.innerHTML = '<tr><td colspan="5" class="empty-state"><i class="fas fa-folder-open"></i> No projects yet</td></tr>'; return; }
-            tbody.innerHTML = items.map(p => `<tr>
+            const catColors = {mobile:'#54C5F8',web:'#e63946',iot:'#00B894',ai:'#7209b7'};
+            const catLabels = {mobile:'Mobile',web:'Web',iot:'IoT',ai:'AI & ML'};
+            tbody.innerHTML = items.map(p => {
+                const cats = Array.isArray(p.category) ? p.category : [p.category].filter(Boolean);
+                const badges = cats.map(c => `<span class="badge" style="background:${catColors[c]||'#4361ee'}20;color:${catColors[c]||'#4361ee'};border:1px solid ${catColors[c]||'#4361ee'}40;font-size:.7rem;padding:2px 8px;border-radius:20px;margin-right:3px">${catLabels[c]||c}</span>`).join('');
+                return `<tr>
                 <td><strong>${esc(p.title)}</strong></td>
-                <td><span class="badge badge-${p.category}">${esc(p.category)}</span></td>
+                <td>${badges}</td>
                 <td style="font-size:.78rem;color:var(--text-muted)">${esc((p.tech||'').split(',').slice(0,3).join(', '))}</td>
                 <td style="font-size:.78rem">${p.demo?`<a href="${esc(p.demo)}" target="_blank" style="color:var(--primary)">${esc(p.demo)}</a>`:'—'}</td>
                 <td>
@@ -1344,7 +1354,8 @@
                     <button class="action-btn" style="background:rgba(6,214,160,.1);color:#06d6a0" onclick="generateProjectPage('${p.id}')" title="Download project page HTML"><i class="fas fa-file-code"></i> Gen</button>
                     <button class="action-btn del-btn" onclick="deleteItem('projects','${p.id}')"><i class="fas fa-trash"></i></button>
                 </td>
-            </tr>`).join('');
+            </tr>`;
+            }).join('');
         }
 
         function openForm(type) {
@@ -1368,7 +1379,12 @@
             document.getElementById('projectFormTitle').textContent = 'Edit Project';
             document.getElementById('projectId').value   = id;
             document.getElementById('projTitle').value   = p.title||'';
-            document.getElementById('projCategory').value= p.category||'web';
+            // Restore category checkboxes
+            const cats = Array.isArray(p.category) ? p.category : [p.category].filter(Boolean);
+            ['catMobile','catWeb','catIot','catAi'].forEach(cbId => {
+                const cb = document.getElementById(cbId);
+                if (cb) cb.checked = cats.includes(cb.value);
+            });
             document.getElementById('projDesc').value    = p.desc||'';
             document.getElementById('projTech').value    = p.tech||'';
             document.getElementById('projGithub').value  = p.github||'';
@@ -1379,9 +1395,14 @@
 
         function saveProject() {
             const id   = document.getElementById('projectId').value || uid();
+            // Collect checked categories as an array
+            const category = ['catMobile','catWeb','catIot','catAi']
+                .map(cbId => document.getElementById(cbId))
+                .filter(cb => cb && cb.checked)
+                .map(cb => cb.value);
             const item = {
                 id, title:    document.getElementById('projTitle').value,
-                category: document.getElementById('projCategory').value,
+                category: category.length ? category : ['web'],
                 desc:     document.getElementById('projDesc').value,
                 tech:     document.getElementById('projTech').value,
                 github:   document.getElementById('projGithub').value,
@@ -1463,7 +1484,7 @@
             </div>
         </section>
     </div></main>
-    <footer class="proj-footer"><p>© 2025 DC Sangeeth &nbsp;|&nbsp; <a href="../index.html">Back to Portfolio</a></p></footer>
+    <footer class="proj-footer"><p>© 2026 DC Sangeeth &nbsp;|&nbsp; <a href="../index.html">Back to Portfolio</a></p></footer>
     <script src="project-script.js"><\/script>
 </body></html>`;
             const blob = new Blob([htmlOut],{type:'text/html'});
