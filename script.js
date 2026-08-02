@@ -258,7 +258,7 @@ function renderSkills(skills) {
 function renderExperience(experience) {
   const container = document.getElementById('experienceTimeline');
   if (!container || !experience?.length) return;
-  container.innerHTML = experience.map((e, i) => `
+  container.innerHTML = [...experience].reverse().map((e, i) => `
         <div class="timeline-item clickable" data-aos="fade-right" data-aos-delay="${200 + i * 100}">
             <div class="timeline-dot pulse"></div>
             <div class="timeline-date"><span>${e.period || ''}</span></div>
