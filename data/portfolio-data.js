@@ -16,7 +16,7 @@ const PORTFOLIO_DATA = {
     "location": "Sri Lanka",
     "github": "https://github.com/dcsangeeth",
     "linkedin": "https://linkedin.com/in/dcsangeeth",
-    "cv": "pdf/DC_Sangeeth_CV_Aug_2026.pdf"
+    "cv": "pdf/DC_Sangeeth_CV_Sep2026.pdf"
   },
   "projects": [
     {
